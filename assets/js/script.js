@@ -3,17 +3,8 @@ var apiKeyTMDB = "8b0814d7463c28b76f719e9285aecbd7";
 var urlGenre = "https://api.themoviedb.org/3/genre/movie/list?api_key=" + apiKeyTMDB + "&language=en";//links to an array of TMDB genres categorized by id
 var urlTopRated = "https://api.themoviedb.org/3/movie/top_rated?api_key=" + apiKeyTMDB + "&language=en";//links to top rated TMDB movies
 var urlPoster = "https://image.tmdb.org/t/p/original";
-
 var genres = []
 
-//asynchronous function to log the genre ids TMDB
-$.ajax({
-	method: 'GET',
-	url: urlGenre,
-	success: function (data) {
-		console.log(data.genres);
-	}
-})
 //asynchronous function to log top rated movies. Can access poster and display on screen. Can display other pages by adding on &page=# to the url
 $.ajax({
 	method: 'GET',
