@@ -2,8 +2,10 @@ $(document).foundation();//initializes foundation
 var apiKeyTMDB = "8b0814d7463c28b76f719e9285aecbd7";
 var urlGenre = "https://api.themoviedb.org/3/genre/movie/list?api_key=" + apiKeyTMDB + "&language=en";//links to an array of TMDB genres categorized by id
 var urlTopRated = "https://api.themoviedb.org/3/movie/top_rated?api_key=" + apiKeyTMDB + "&language=en";//links to top rated TMDB movies
-var urlPoster = "https://image.tmdb.org/t/p/original";
+var urlPoster = "https://image.tmdb.org/t/p/original";//url for posters. Image location should be added on.
 var genres = []
+
+var movieID = "tt0088247"//hardcode for Jaws from imbd to test fetch calls   tt0073195
 
 //asynchronous function to log top rated movies. Can access poster and display on screen. Can display other pages by adding on &page=# to the url
 $.ajax({
@@ -20,7 +22,6 @@ $.ajax({
 	}
 })
 
-var movieID = "tt0073195"//code for Jaws from imbd
 //utelly settings to pass url
 const settings = {
 	"async": true,
@@ -38,22 +39,24 @@ $.ajax(settings).done(function (response) {
 });
 
 //Filling the genres array with genre objects that have a name and id available
-var getGenres = function() {
+var getGenres = function () {
 	$.ajax({
 		method: 'GET',
 		url: urlGenre,
 		success: function (data) {
-			for(var i = 0; i < data.genres.length; i++) {
-				var genre = {
+			for (var i = 0; i < data.genres.length; i++) {
+				var genreData = {
 					name: data.genres[i].name,
 					id: data.genres[i].id
 				};
-				genres.push(genre);
+				genres.push(genreData);
 			}
-			
+
 		}
 	})
 	console.log(genres);
 }
+
+
 
 getGenres();
