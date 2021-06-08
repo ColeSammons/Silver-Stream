@@ -36,6 +36,7 @@ var utelly = function(movieID) {
 	};
 	//utelly api call
 	$.ajax(settings).done(function (response) {
+		console.log("Utelly response");
 		console.log(response);
 	});
 }
@@ -69,15 +70,15 @@ var getRating = function (movieID) {
 			console.log(data.results);
 			for (var i = 0; i < data.results.length; i++) {
 				if(data.results[i].iso_3166_1 === "US") {
-					var rating = data.results[i].release_dates[data.results[i].release_dates.length - 1].certification
+					var rating = data.results[i].release_dates[data.results[i].release_dates.length - 1].certification;
 					console.log(rating);
 				}
 			}
-			return rating;
+			
 		}
 	})
 }
 
-var test1 = getRating("tt0073195");//Getting the rating for Jaws using imdb ID
 utelly("tt0073195");//Getting streaming info for Jaws using imdb ID
+getRating("tt0073195");
 getGenreArray();//Filling genres array
