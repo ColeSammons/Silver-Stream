@@ -4,23 +4,28 @@ var urlGenre = "https://api.themoviedb.org/3/genre/movie/list?api_key=" + apiKey
 var urlTopRated = "https://api.themoviedb.org/3/movie/top_rated?api_key=" + apiKeyTMDB + "&language=en";//links to top rated TMDB movies
 var urlPoster = "https://image.tmdb.org/t/p/original";
 
+var genres = []
+
 //asynchronous function to log the genre ids TMDB
 $.ajax({
 	method: 'GET',
 	url: urlGenre,
 	success: function (data) {
-		console.log(data);
+		console.log(data.genres);
 	}
 })
-//asynchronous function to log top rated movies. Can access poster and diaply on screen
+//asynchronous function to log top rated movies. Can access poster and display on screen. Can display other pages by adding on &page=# to the url
 $.ajax({
 	method: 'GET',
 	url: urlTopRated,
 	success: function (data) {
-		console.log(data.results[0]);
+		console.log(data);
 		var poster = data.results[0].poster_path;
-		var img = $("<img>").attr("src", urlPoster + poster).attr("id", "movie-poster").addClass("cell large-4");
-		$(".movie-box").append(img);
+		var title = data.results[0].title;
+		var displayPoster = $("<img>").attr("src", urlPoster + poster).attr("id", "movie-poster").addClass("cell large-4");
+		var displayTitle = $("<h3>").addClass("cell large-8").text(title);
+		$(".movie-box").append(displayPoster);
+		$(".movie-box").append(displayTitle);
 	}
 })
 
@@ -40,3 +45,24 @@ const settings = {
 $.ajax(settings).done(function (response) {
 	console.log(response);
 });
+
+//Filling the genres array with genre objects that have a name and id available
+var getGenres = function() {
+	$.ajax({
+		method: 'GET',
+		url: urlGenre,
+		success: function (data) {
+			for(var i = 0; i < data.genres.length; i++) {
+				var genre = {
+					name: data.genres[i].name,
+					id: data.genres[i].id
+				};
+				genres.push(genre);
+			}
+			
+		}
+	})
+	console.log(genres);
+}
+
+getGenres();
