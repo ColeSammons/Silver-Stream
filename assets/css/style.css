@@ -9,3 +9,9 @@
 #movies-display {
     margin: 20px 50px;
 }
+
+#movie-poster {
+    width: 125px;
+    height: 190px;
+}
+
