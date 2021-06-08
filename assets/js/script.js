@@ -1,7 +1,7 @@
-// 7af753d8       //API key!!!!
-var apikey = "7af753d8";
+$(document).foundation();//initializes foundation
+var apikey = "7af753d8"; //API key from omdb
 var url = "http://www.omdbapi.com/?apikey=" + apikey;
-var movie = "Cruella";
+var movie = "Jaws";
 
 //omdb api call poster test
 $.ajax({
@@ -10,7 +10,6 @@ $.ajax({
     success:function(data) {
         console.log(data);
         console.log(data.Poster);
-        var img = $("img").attr("src", data.Poster);
         $(".img-poster").append("<img src=" + data.Poster + "></img>");
     }
 })
