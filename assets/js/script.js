@@ -1,13 +1,17 @@
 // 7af753d8       //API key!!!!
 var apikey = "7af753d8";
 var url = "http://www.omdbapi.com/?apikey=" + apikey;
-var movie = "Jaws";
-//omdb api call
+var movie = "Cruella";
+
+//omdb api call poster test
 $.ajax({
     method:'GET',
     url:url + "&t=" + movie,
     success:function(data) {
         console.log(data);
+        console.log(data.Poster);
+        var img = $("img").attr("src", data.Poster);
+        $(".img-poster").append("<img src=" + data.Poster + "></img>");
     }
 })
 //utelly settings to pass url
