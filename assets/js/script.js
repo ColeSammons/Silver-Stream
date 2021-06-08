@@ -5,7 +5,7 @@ var urlTopRated = "https://api.themoviedb.org/3/movie/top_rated?api_key=" + apiK
 var urlPoster = "https://image.tmdb.org/t/p/original";//url for posters. Image location should be added on.
 var genres = []
 
-var movieID = "";//Initializing variable that will be passed into getRating().Use "tt0073195" to test getRating with imdb id for Jaws
+var movieID = "";//Initializing variable that will be passed into getRating() and utelly().Use "tt0073195" to test getRating with imdb id for Jaws
 
 //asynchronous function to log top rated movies. Can access poster and display on screen. Can display other pages by adding on &page=# to the url
 $.ajax({
@@ -41,7 +41,7 @@ var utelly = function(movieID) {
 }
 
 //Filling the genres array with genre objects that have a name and id available
-var getGenres = function () {
+var getGenreArray = function () {
 	$.ajax({
 		method: 'GET',
 		url: urlGenre,
@@ -80,4 +80,4 @@ var getRating = function (movieID) {
 
 var test1 = getRating("tt0073195");//Getting the rating for Jaws using imdb ID
 utelly("tt0073195");//Getting streaming info for Jaws using imdb ID
-getGenres();//Filling genres array
+getGenreArray();//Filling genres array
