@@ -3,7 +3,7 @@ var apiKeyTMDB = "8b0814d7463c28b76f719e9285aecbd7";
 var urlGenre = "https://api.themoviedb.org/3/genre/movie/list?api_key=" + apiKeyTMDB + "&language=en";//links to an array of TMDB genres categorized by id
 var urlTopRated = "https://api.themoviedb.org/3/movie/top_rated?api_key=" + apiKeyTMDB + "&language=en";//links to top rated TMDB movies
 var urlPoster = "https://image.tmdb.org/t/p/original";//url for posters. Image location should be added on.
-var genres = []
+var genres = [];
 
 var movieID = "";//Initializing variable that will be passed into getRating() and utelly().Use "tt0073195" to test getRating with imdb id for Jaws
 
@@ -14,12 +14,12 @@ var topRated = function () {
 	}).then(function (data) {
 		console.log("Displaying top rated movies");
 		console.log(data);
-		var poster = data.results[3].poster_path;
-		var title = data.results[3].title;
-		var displayPoster = $("<img>").attr("src", urlPoster + poster).attr("id", "movie-poster").addClass("cell large-4");
-		var displayTitle = $("<h3>").addClass("cell large-8").text(title);
-		$(".movie-box").append(displayPoster);
-		$(".movie-box").append(displayTitle);
+		// var poster = data.results[3].poster_path;
+		// var title = data.results[3].title;
+		// var displayPoster = $("<img>").attr("src", urlPoster + poster).attr("id", "movie-poster").addClass("cell large-4");
+		// var displayTitle = $("<h3>").addClass("cell large-8").text(title);
+		// $(".movie-box").append(displayPoster);
+		// $(".movie-box").append(displayTitle);
 	})
 }
 
@@ -81,7 +81,7 @@ var getRating = function (movieID) {
 	})
 }
 
-topRated();
+topRated();//shows top rated movies
 utelly("tt0073195");//Getting streaming info for Jaws using imdb ID
-getRating("tt0073195");
+getRating("tt0073195");//Get rating of jaws
 getGenreArray();//Filling genres array
