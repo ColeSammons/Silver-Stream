@@ -3,10 +3,13 @@ var apiKeyTMDB = "8b0814d7463c28b76f719e9285aecbd7";
 var urlGenre = "https://api.themoviedb.org/3/genre/movie/list?api_key=" + apiKeyTMDB + "&language=en";//links to an array of TMDB genres categorized by id
 var urlTopRated = "https://api.themoviedb.org/3/movie/top_rated?api_key=" + apiKeyTMDB + "&language=en";//links to top rated TMDB movies
 var urlPoster = "https://image.tmdb.org/t/p/original";//url for posters. Image location should be added on.
-var genres = []
+var genres = [];
+var sortedGenre = [];
+var testCounter = 0;
 
 var movieID = "";//Initializing variable that will be passed into getRating() and utelly().Use "tt0073195" to test getRating with imdb id for Jaws
 
+//Function to grab topRated genre
 var topRated = function() {
 	fetch(urlTopRated).then(function(response) {
 		return response.json();
@@ -19,6 +22,50 @@ var topRated = function() {
 		$(".movie-box").append(displayPoster);
 		$(".movie-box").append(displayTitle);
 	})
+}
+
+var topRatingTest = function(){
+	fetch(urlTopRated).then(function(response){
+		return response.json();
+	})
+	.then(function(data){
+		console.log(data);
+		for (var i = 0; i < 5; i++){
+			var poster = data.results[i].poster_path;
+			var title = data.results[i].title;
+			var displayTitle = $("<h3>").addClass("cell large-8").text(title);
+			//$(".movie-box").append(displayPoster);
+			$(".movie-box").append(displayTitle);
+
+
+		}
+	})
+}
+
+var topGenre = function(genreID){
+	fetch(urlTopRated).then(function(response){
+		return response.json();
+	})
+	.then(function(data){
+		console.log(data);
+		console.log(data.results[1].genre_ids);
+		console.log(data.results[1].genre_ids.includes(genreID)); //Returns BOOLEAN if genre ID is inside that genre Array
+		//console.log(data.results.length);
+		for (var i=0; i < data.results.length; i++){
+			console.log(data.results[i].genre_ids);
+			//var bool = data.results[i].genre_ids.includes(genreID);
+			//console.log(bool);
+			// if (data.results[i].genre_ids.includes(genreID)){
+			// 	console.log(data.results[i].genre_ids);
+			//sortedGenre.push(data.results[i]);
+			// 	testCounter++;
+			// } else{
+			// 	continue;
+			 //}
+		 }
+		 //console.log(sortedGenre);
+		 //console.log(testCounter)
+	});
 }
 
 //utelly settings to pass url
@@ -78,7 +125,7 @@ var getRating = function (movieID) {
 	})
 }
 
-topRated();
-utelly("tt0073195");//Getting streaming info for Jaws using imdb ID
-getRating("tt0073195");
-getGenreArray();//Filling genres array
+topGenre("35");
+// utelly("tt0073195");//Getting streaming info for Jaws using imdb ID
+// getRating("tt0073195");
+// getGenreArray();//Filling genres array
