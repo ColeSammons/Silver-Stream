@@ -7,11 +7,10 @@ var genres = []
 
 var movieID = "";//Initializing variable that will be passed into getRating() and utelly().Use "tt0073195" to test getRating with imdb id for Jaws
 
-//asynchronous function to log top rated movies. Can access poster and display on screen. Can display other pages by adding on &page=# to the url
-$.ajax({
-	method: 'GET',
-	url: urlTopRated,
-	success: function (data) {
+var topRated = function() {
+	fetch(urlTopRated).then(function(response) {
+		return response.json();
+	}).then(function(data) {
 		console.log(data);
 		var poster = data.results[0].poster_path;
 		var title = data.results[0].title;
@@ -19,8 +18,8 @@ $.ajax({
 		var displayTitle = $("<h3>").addClass("cell large-8").text(title);
 		$(".movie-box").append(displayPoster);
 		$(".movie-box").append(displayTitle);
-	}
-})
+	})
+}
 
 //utelly settings to pass url
 var utelly = function(movieID) {
@@ -79,6 +78,7 @@ var getRating = function (movieID) {
 	})
 }
 
+topRated();
 utelly("tt0073195");//Getting streaming info for Jaws using imdb ID
 getRating("tt0073195");
 getGenreArray();//Filling genres array
