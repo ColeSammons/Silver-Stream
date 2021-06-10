@@ -1,12 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="no-js" lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Silver Stream</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css"
+        integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="./assets/css/style.css">
+
 </head>
+
 <body>
+    <header class="grid-container">
+        <div class="grid-x">
+            <div id="ratings-header" class="large-2 medium-2 cell">
+                <h5 class=""> Rating:</h5>
+            </div>
+
+            <div class="cell large-10 medium-10 flex-container small-flex-dir-column flex-dir-row align-middle">
+                <span id="ratings-options" class=""><input id="g-check" type="checkbox"><label>G</label></span>
+                <span id="ratings-options" class=""><input id="pg-check" type="checkbox"><label>PG</label></span>
+                <span id="ratings-options" class=""><input id="pg13-check" type="checkbox"><label>PG-13</label></span>
+                <span id="ratings-options" class=""><input id="r-check" type="checkbox"><label>R</label></span>
+            </div>
+        </div>
+
+        <div class="grid-x grid-padding-x align-spaced">
+            <a href="#" class="button">Genre1</a>
+            <a href="#" class="button">Genre2</a>
+            <a href="#" class="button">Genre3</a>
+            <a href="#" class="button">Genre4</a>
+            <a href="#" class="button">Genre5</a>
+        </div>
+
+        <div class="button-group align-center">
+            <a href="#" class="button">Let's Watch!</a>
+        </div>
+
+    </header>
+
+    <section>
+        <ul id="movies-display" class="accordion" data-accordion>
+            <li class="accordion-item" data-accordion-item>
+                <!-- Accordion tab title -->
+                <a href="#" class="accordion-title">Movie 1</a>
+
+                <!-- Accordion tab content: it would start in the open state due to using the `is-active` state class. -->
+                <div class="accordion-content" data-tab-content>
+                    <p>Panel 1. Lorem ipsum dolor</p>
+                    <a href="#">Nowhere to Go</a>
+                </div>
+            </li>
+            <li class="accordion-item" data-accordion-item>
+                <!-- Accordion tab title -->
+                <a href="#" class="accordion-title">Movie 2</a>
+
+                <!-- Accordion tab content: it would start in the open state due to using the `is-active` state class. -->
+                <div class="accordion-content" data-tab-content>
+                    <p>Panel 1. Lorem ipsum dolor</p>
+                    <a href="#">Nowhere to Go</a>
+                </div>
+            </li>
+            <li class="accordion-item" data-accordion-item>
+                <!-- Accordion tab title -->
+                <a href="#" class="accordion-title">Movie 3</a>
+
+                <!-- Accordion tab content: it would start in the open state due to using the `is-active` state class. -->
+                <div class="accordion-content" data-tab-content>
+                    <p>Panel 1. Lorem ipsum dolor</p>
+                    <a href="#">Nowhere to Go</a>
+                </div>
+            </li>
+            <li class="accordion-item" data-accordion-item>
+                <!-- Accordion tab title -->
+                <a href="#" class="accordion-title">Movie 4</a>
+
+                <!-- Accordion tab content: it would start in the open state due to using the `is-active` state class. -->
+                <div class="accordion-content" data-tab-content>
+                    <p>Panel 1. Lorem ipsum dolor</p>
+                    <a href="#">Nowhere to Go</a>
+                </div>
+            </li>
+            <!-- Hardcoding movie to list -->
+            <li class="accordion-item" data-accordion-item>
+                <a href="#" class="accordion-title movie-box"></a>
+                <div class="accordion-content" data-tab-content>
+                    Streaming
+                </div>
+            </li>
+
+        </ul>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
+        integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
     <script src="./assets/js/script.js"></script>
 </body>
+
 </html>
