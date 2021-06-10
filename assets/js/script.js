@@ -79,7 +79,11 @@ var getRating = function (movieID) {
 				}
 			}
 	})
-}
+};
+
+// var movieGenre = funciton() {
+
+// }
 
 topRated();//shows top rated movies
 utelly("tt0073195");//Getting streaming info for Jaws using imdb ID
