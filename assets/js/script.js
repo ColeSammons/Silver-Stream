@@ -7,19 +7,22 @@ var genres = [];
 
 var movieID = "";//Initializing variable that will be passed into getRating() and utelly().Use "tt0073195" to test getRating with imdb id for Jaws
 
-//concat &page=* to the end of url for differnet pages
+//concat &page=* to the end of url for diffrent pages
 var topRated = function () {
 	fetch(urlTopRated).then(function (response) {
 		return response.json();
 	}).then(function (data) {
 		console.log("Displaying top rated movies");
 		console.log(data);
-		// var poster = data.results[3].poster_path;
-		// var title = data.results[3].title;
-		// var displayPoster = $("<img>").attr("src", urlPoster + poster).attr("id", "movie-poster").addClass("cell large-4");
-		// var displayTitle = $("<h3>").addClass("cell large-8").text(title);
-		// $(".movie-box").append(displayPoster);
-		// $(".movie-box").append(displayTitle);
+		var poster = data.results[3].poster_path;
+		var title = data.results[3].title;
+		var summary = data.results[3].overview;
+		var displayPoster = $("<img>").attr("src", urlPoster + poster).attr("id", "movie-poster").addClass("cell large-4");
+		var displayTitle = $("<h3>").addClass("cell large-8").text(title);
+		var displaySummary = $("<p>").text(summary);
+		$(".movie-box").append(displayPoster);
+		$(".movie-box").append(displayTitle);
+		$(".movie-box").append(displaySummary);
 	})
 }
 
@@ -65,7 +68,6 @@ var getGenreArray = function () {
 //Function to log movie rating
 var getRating = function (movieID) {
 	var urlMovieRating = "https://api.themoviedb.org/3/movie/" + movieID + "/release_dates?api_key=" + apiKeyTMDB + "&language=en";
-
 	fetch(urlMovieRating).then(function(response) {
 		return response.json();
 	}).then(function(data) {
@@ -73,13 +75,20 @@ var getRating = function (movieID) {
 		console.log(data.results);
 			for (var i = 0; i < data.results.length; i++) {
 				if (data.results[i].iso_3166_1 === "US") {
-					var rating = data.results[i].release_dates[data.results[i].release_dates.length - 1].certification;
+					rating = data.results[i].release_dates[data.results[i].release_dates.length - 1].certification;
 					console.log("Rating of Jaws");
 					console.log(rating);
+					showRating(rating);
 				}
 			}
 	})
 };
+
+
+var showRating = function(rating) {
+	var displayRating = $("<p>").text(rating);
+	$(".movie-box").append(displayRating);
+}
 
 
 topRated();//shows top rated movies
