@@ -12,28 +12,31 @@ var topRated = function () {
 	var pageCount = 1;
 	var urlTopRated = "https://api.themoviedb.org/3/movie/top_rated?api_key=" + apiKeyTMDB + "&language=en&page=" + pageCount;
 
-	for (var i = 0; i < 100; i++) {
+	for (var i = 0; i < 10; i++) {
 		fetch(urlTopRated).then(function (response) {
-			return response.json();
-		}).then(function (data) {
-			// console.log(data);
-			for (var j = 0; j < data.results.length; j++) {
-				if (data.results[j].original_language === "en") {
-						var movie = {
-							genre: data.results[j].genre_ids,
-							id: data.results[j].id,
-							overview: data.results[j].overview,
-							poster: data.results[j].poster_path,
-							release: data.results[j].release_date,
-							title: data.results[j].title,
-					};
-					movies.push(movie);
-				}
+			if (response.ok) {
+				response.json().then(function (data) {
+					// console.log(data);
+					for (var j = 0; j < data.results.length; j++) {
+						if (data.results[j].original_language === "en") {
+							var movie = {
+								'genre': data.results[j].genre_ids,
+								'id': data.results[j].id,
+								'overview': data.results[j].overview,
+								'poster': data.results[j].poster_path,
+								'release': data.results[j].release_date,
+								'title': data.results[j].title
+							}
+							movies.push(movie)
+						}
+					}
+				})
 			}
+
 		})
 		pageCount++;
 	}
-	console.log(movies);
+
 }
 
 //utelly settings to pass url
@@ -63,6 +66,7 @@ var getGenreArray = function () {
 	fetch(urlGenre).then(function (response) {
 		return response.json();
 	}).then(function (data) {
+		console.log(data);
 		for (var i = 0; i < data.genres.length; i++) {
 			var genreData = {
 				name: data.genres[i].name,
@@ -101,28 +105,39 @@ var showRating = function (rating) {
 }
 
 var getSortedMovies = function (genre) {
-
 	getGenreArray();
-
-
+	topRated();
+	getExternalID();
 }
 
-var getExternalID = function(id) {
-	var externalIDURL = "https://api.themoviedb.org/3/movie/" + id + "?api_key=" + apiKeyTMDB;
-	fetch(externalIDURL).then(function (response) {
-		if (response.ok) {
-			response.json().then(function (data) {
-				// console.log(data);
-				var idCode = data.imdb_id;
-				console.log(idCode);
-				return idCode;
-			})
-		}
-	})
+var getExternalID = function () {
+	for (var i = 0; i < 10; i++) { 
+		console.log(movies);
+		// var externalIDURL = "https://api.themoviedb.org/3/movie/" + movies[i].id + "?api_key=" + apiKeyTMDB;
+		// fetch(externalIDURL).then(function (response) {
+		// 	if (response.ok) {
+		// 		response.json().then(function (data) {
+		// 			console.log(data);
+		// 			// movies[i].imdb = data.imdb_id;
+
+		// 		})
+		// 	}
+		// })
+	}
 }
 
+getSortedMovies();
 
-topRated();//shows top rated movies
 //utelly("tt0073195");//Getting streaming info for Jaws using imdb ID
 //getRating("tt0073195");//Get rating of jaws
-getGenreArray();//Filling genres array
+
+
+			// var poster = data.results[3].poster_path;
+			// var title = data.results[3].title;
+			// var summary = data.results[3].overview;
+			// 	var displayPoster = $("<img>").attr("src", urlPoster + poster).attr("id", "movie-poster").addClass("cell large-4");
+			// 	var displayTitle = $("<h3>").addClass("cell large-8").text(title);
+			// 	var displaySummary = $("<p>").text(summary);
+			// 	$(".movie-box").append(displayPoster);
+			// 	$(".movie-box").append(displayTitle);
+			// 	$(".movie-box").append(displaySummary);
