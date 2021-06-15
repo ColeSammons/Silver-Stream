@@ -112,25 +112,23 @@ var getSortedMovies = function (genre) {
 	
 }
 
-// var getExternalID = function () {
-// 	setTimeout(function () {
-// 		debugger;
-// 		// for (var i = 0; i < 10; i++) {
-// 			// console.log(movies[i]);
-// 			$.each(movies, function)
-// 			var externalIDURL = "https://api.themoviedb.org/3/movie/" + movies[i].id + "?api_key=" + apiKeyTMDB;
-// 			fetch(externalIDURL).then(async function (response) {
-// 				if (response.ok) {
-// 					return response.json()
-// 					.then((data) => {
-// 						console.log(data.imdb_id);
-// 						movies[i].imdb =  data.imdb_id;
-// 					})
-// 				}
-// 			})
-// 		// }
-// 	}, 500);
-// }
+var getExternalID = function () {
+	setTimeout(function () {
+		for (let i = 0; i < 10; i++) {
+			console.log(movies[i]);
+			var externalIDURL = "https://api.themoviedb.org/3/movie/" + movies[i].id + "?api_key=" + apiKeyTMDB;
+			fetch(externalIDURL).then(async function (response) {
+				if (response.ok) {
+					return response.json()
+					.then((data) => {
+						console.log(data.imdb_id);
+						movies[i].imdb =  data.imdb_id;
+					})
+				}
+			})
+		}
+	}, 500);
+}
 
 getSortedMovies();
 
