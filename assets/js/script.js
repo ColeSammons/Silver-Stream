@@ -18,15 +18,16 @@ var movies = [];
 var genres = [];
 
 var topRated = function () {
-	var pageCount = 1;
-	var urlTopRated = "https://api.themoviedb.org/3/movie/top_rated?api_key=" + apiKeyTMDB + "&language=en&page=" + pageCount;
+	// var pageCount = 1;
+	
 
-	for (var i = 0; i < 70; i++) {
+	for (let i = 0; i < 40; i++) {
+		var urlTopRated = "https://api.themoviedb.org/3/movie/top_rated?api_key=" + apiKeyTMDB + "&language=en&page=" + Math.random() * 150;
 		fetch(urlTopRated).then(function (response) {
 			if (response.ok) {
-				response.json().then(function (data) {
-					// console.log(data);
-					for (var j = 0; j < data.results.length; j++) {
+				response.json().then(async function (data) {
+					console.log(data);
+					for (let j = 0; j < data.results.length; j++) {
 						if (data.results[j].original_language === "en") {
 							var movie = {
 								'genre': data.results[j].genre_ids,
@@ -43,7 +44,7 @@ var topRated = function () {
 			}
 
 		})
-		pageCount++;
+		// pageCount++;
 	}
 }
 
@@ -117,7 +118,7 @@ var getExternalID = function () {
 }
 
 var displaySorted = function() {
-	for(var i =0; i < 40; i++) {
+	for(var i =0; i < 100; i++) {
 		//accordian for movies.
 		var list = $("<li>").addClass("accordion-item").attr("data-accordion-item","");
 		var moviePanel = $("<a>").attr("href", "#").addClass("accordion-title").attr("value", movies[i].imdb);
