@@ -36,7 +36,6 @@ var topRated = function () {
 		})
 		pageCount++;
 	}
-
 }
 
 //utelly settings to pass url
@@ -66,17 +65,19 @@ var getGenreArray = function () {
 	fetch(urlGenre).then(function (response) {
 		return response.json();
 	}).then(function (data) {
-		console.log(data);
-		for (var i = 0; i < data.genres.length; i++) {
-			var genreData = {
-				name: data.genres[i].name,
-				id: data.genres[i].id
-			};
-			genres.push(genreData);
-		}
+		setTimeout(function () {
+			for (var i = 0; i < data.genres.length; i++) {
+				var genreData = {
+					name: data.genres[i].name,
+					id: data.genres[i].id
+				};
+				genres.push(genreData);
+			}
+			console.log("Array of genres");
+			console.log(genres);
+		}, 1000)
 	})
-	console.log("Array of genres");
-	console.log(genres);
+
 }
 
 //Function to log movie rating
@@ -108,23 +109,28 @@ var getSortedMovies = function (genre) {
 	getGenreArray();
 	topRated();
 	getExternalID();
+	
 }
 
-var getExternalID = function () {
-	for (var i = 0; i < 10; i++) { 
-		console.log(movies);
-		// var externalIDURL = "https://api.themoviedb.org/3/movie/" + movies[i].id + "?api_key=" + apiKeyTMDB;
-		// fetch(externalIDURL).then(function (response) {
-		// 	if (response.ok) {
-		// 		response.json().then(function (data) {
-		// 			console.log(data);
-		// 			// movies[i].imdb = data.imdb_id;
-
-		// 		})
-		// 	}
-		// })
-	}
-}
+// var getExternalID = function () {
+// 	setTimeout(function () {
+// 		debugger;
+// 		// for (var i = 0; i < 10; i++) {
+// 			// console.log(movies[i]);
+// 			$.each(movies, function)
+// 			var externalIDURL = "https://api.themoviedb.org/3/movie/" + movies[i].id + "?api_key=" + apiKeyTMDB;
+// 			fetch(externalIDURL).then(async function (response) {
+// 				if (response.ok) {
+// 					return response.json()
+// 					.then((data) => {
+// 						console.log(data.imdb_id);
+// 						movies[i].imdb =  data.imdb_id;
+// 					})
+// 				}
+// 			})
+// 		// }
+// 	}, 500);
+// }
 
 getSortedMovies();
 
