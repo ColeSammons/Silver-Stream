@@ -13,100 +13,51 @@ var fantasyEl = document.getElementById("14");
 var dramaEl = document.getElementById("18")
 var genresPic = [];
 var sortedGenre = [];
-var testCounter = 0;
-=======
+
+var movies = [];
 var genres = [];
 
-//concat &page=* to the end of url for diffrent pages
 var topRated = function () {
-	fetch(urlTopRated).then(function (response) {
+	var pageCount = 1;
+	var urlTopRated = "https://api.themoviedb.org/3/movie/top_rated?api_key=" + apiKeyTMDB + "&language=en&page=" + pageCount;
 
-		return response.json();
-	}).then(function (data) {
-		console.log("Displaying top rated movies");
-		console.log(data);
-		var poster = data.results[3].poster_path;
-		var title = data.results[3].title;
-		var summary = data.results[3].overview;
-		var displayPoster = $("<img>").attr("src", urlPoster + poster).attr("id", "movie-poster").addClass("cell large-4");
-		var displayTitle = $("<h3>").addClass("cell large-8").text(title);
-		var displaySummary = $("<p>").text(summary);
-		$(".movie-box").append(displayPoster);
-		$(".movie-box").append(displayTitle);
-		$(".movie-box").append(displaySummary);
-	})
+	for (var i = 0; i < 100; i++) {
+		fetch(urlTopRated).then(function (response) {
+			if (response.ok) {
+				response.json().then(function (data) {
+					// console.log(data);
+					for (var j = 0; j < data.results.length; j++) {
+						if (data.results[j].original_language === "en") {
+							var movie = {
+								'genre': data.results[j].genre_ids,
+								'id': data.results[j].id,
+								'overview': data.results[j].overview,
+								'poster': data.results[j].poster_path,
+								'release': data.results[j].release_date,
+								'title': data.results[j].title
+							}
+							movies.push(movie)
+						}
+					}
+				})
+			}
+
+		})
+		pageCount++;
+	}
 }
 
-var topRatingTest = function(){
-	fetch(urlTopRated).then(function(response){
-		return response.json();
-	})
-	.then(function(data){
-		console.log(data);
-		for (var i = 0; i < 5; i++){
-			var poster = data.results[i].poster_path;
-			var title = data.results[i].title;
-			var displayTitle = $("<h3>").addClass("cell large-8").text(title);
-			//$(".movie-box").append(displayPoster);
-			$(".movie-box").append(displayTitle);
-
-
-		}
-	})
-}
-
-var topGenre = function(event){
-	event.preventDefault();
-	console.log(event.target);
-	var genreID = event.target.id;
-
-	sortedGenre = [];
-	genresPic = [];
-
-	//console.log(genreID);
-	fetch(urlTopRated).then(function(response){
-		return response.json();
-	})
-	.then(function(data){
-		//console.log(data);
-		//console.log(data.results[1].genre_ids);
-		//console.log(data.results[1].genre_ids.includes(genreID)); //Returns BOOLEAN if genre ID is inside that genre Array
-		//console.log(data.results.length);
-		for (var i=0; i < data.results.length; i++){
-			//console.log(data.results[i].genre_ids);
-			//var bool = data.results[i].genre_ids.includes(genreID);
-			//console.log(bool);
-			for (var j=0; j <data.results[i].genre_ids.length;j++){
-				console.log(data.results[i].genre_ids[j]);
-				if (genreID == data.results[i].genre_ids[j]){
-					//console.log("true");
-					//console.log(j);
-					//var movieTitle = document.getElementById("0");
-					//movieTitle.innerHTML += "Movie Title " + data.results[i].title;
-					sortedGenre.push(data.results[i].title)
-					genresPic.push(data.results[i].poster_path)
+var sortGenre = function (genreID) {
+		for (let i = 0; i < movies.length; i++) {
+			for (let j = 0; j < movies[i].genre.length; j++) {
+				if (genreID === movies[i].genre[j]) {
+					console.log(movies[i].genre[j]);
+					sortedGenre.push(movies[i]);
 				}
 			}
-			//console.log(sortedGenre)
-			// if (data.results[i].genre_ids.includes(genreID)){
-			// 	console.log(data.results[i].genre_ids);
-			//sortedGenre.push(data.results[i].genre_ids);
-			// 	testCounter++;
-			// } else{
-			// 	continue;
-			 //}
-		 }
-		 console.log(sortedGenre);
-		 for (var i=0; i < 5; i++){
-			 var movieTitle = document.querySelector("#mov" + i);
-			 //console.log("Movie" + i);
-			 movieTitle.innerHTML = "<img src='"+ urlPoster+genresPic[i] + "' height='200px' width='200px'> <br> Movie Title: " + sortedGenre[i];
-			 //testCounter++;
-		 }
-		 //console.log(sortedGenre);
-		 //console.log(testCounter)
-	});
-	
+		}
+		// 	var movieTitle = document.querySelector("#mov" + i);
+		// 	movieTitle.innerHTML = "<img src='" + urlPoster + genresPic[i] + "' height='200px' width='200px'> <br> Movie Title: " + sortedGenre[i];
 }
 
 //utelly settings to pass url
@@ -125,7 +76,7 @@ var utelly = function (movieID) {
 			console.log("Utelly response");
 			console.log(data);
 		})
-		.catch(function(err) {
+		.catch(function (err) {
 			console.error(err);
 			console.log("Error accessing utelly streams");
 		});
@@ -148,36 +99,37 @@ var getGenreArray = function () {
 	console.log(genres);
 }
 
-//Function to log movie rating
-var getRating = function (movieID) {
-	var urlMovieRating = "https://api.themoviedb.org/3/movie/" + movieID + "/release_dates?api_key=" + apiKeyTMDB + "&language=en";
-	fetch(urlMovieRating).then(function(response) {
-		return response.json();
-	}).then(function(data) {
-		console.log("List of regions released");
-		console.log(data.results);
-			for (var i = 0; i < data.results.length; i++) {
-				if (data.results[i].iso_3166_1 === "US") {
-					rating = data.results[i].release_dates[data.results[i].release_dates.length - 1].certification;
-					console.log("Rating of Jaws");
-					console.log(rating);
-					showRating(rating);
+var getExternalID = function () {
+	setTimeout(function () {
+		for (let i = 0; i < movies.length; i++) {
+			// console.log(movies[i]);
+			var externalIDURL = "https://api.themoviedb.org/3/movie/" + movies[i].id + "?api_key=" + apiKeyTMDB;
+			fetch(externalIDURL).then(async function (response) {
+				if (response.ok) {
+					return response.json()
+						.then((data) => {
+							movies[i].imdb = data.imdb_id;
+						})
 				}
-			}
-	})
-};
-
-
-var showRating = function(rating) {
-	var displayRating = $("<p>").text(rating);
-	$(".movie-box").append(displayRating);
+			})
+		}
+	}, 1000);
 }
 
+// comedyEl.addEventListener("click", topGenre);
+// dramaEl.addEventListener("click", topGenre);
+// crimeEl.addEventListener("click", topGenre);
+// romanceEl.addEventListener("click", topGenre);
+// fantasyEl.addEventListener("click", topGenre);
 
-//topGenre("35");
-comedyEl.addEventListener("click", topGenre);
-dramaEl.addEventListener("click", topGenre);
-crimeEl.addEventListener("click", topGenre);
-romanceEl.addEventListener("click", topGenre);
-fantasyEl.addEventListener("click", topGenre);
+getGenreArray();
+topRated();
+getExternalID();
+
+setTimeout(function() {
+	sortGenre(18);
+	console.log(sortedGenre);
+}, 5000);
+
+
 
