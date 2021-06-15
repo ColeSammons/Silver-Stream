@@ -3,13 +3,24 @@ var apiKeyTMDB = "8b0814d7463c28b76f719e9285aecbd7";
 var urlGenre = "https://api.themoviedb.org/3/genre/movie/list?api_key=" + apiKeyTMDB + "&language=en";//links to an array of TMDB genres categorized by id
 var urlTopRated = "https://api.themoviedb.org/3/movie/top_rated?api_key=" + apiKeyTMDB + "&language=en";//links to top rated TMDB movies
 var urlPoster = "https://image.tmdb.org/t/p/original";//url for posters. Image location should be added on.
-var genres = [];
 
-var movieID = "";//Initializing variable that will be passed into getRating() and utelly().Use "tt0073195" to test getRating with imdb id for Jaws
+
+//Grabbing Buttons to add Event Listeners
+var crimeEl = document.getElementById("80");
+var comedyEl = document.getElementById("35");
+var romanceEl = document.getElementById("10749");
+var fantasyEl = document.getElementById("14");
+var dramaEl = document.getElementById("18")
+var genresPic = [];
+var sortedGenre = [];
+var testCounter = 0;
+=======
+var genres = [];
 
 //concat &page=* to the end of url for diffrent pages
 var topRated = function () {
 	fetch(urlTopRated).then(function (response) {
+
 		return response.json();
 	}).then(function (data) {
 		console.log("Displaying top rated movies");
@@ -24,6 +35,78 @@ var topRated = function () {
 		$(".movie-box").append(displayTitle);
 		$(".movie-box").append(displaySummary);
 	})
+}
+
+var topRatingTest = function(){
+	fetch(urlTopRated).then(function(response){
+		return response.json();
+	})
+	.then(function(data){
+		console.log(data);
+		for (var i = 0; i < 5; i++){
+			var poster = data.results[i].poster_path;
+			var title = data.results[i].title;
+			var displayTitle = $("<h3>").addClass("cell large-8").text(title);
+			//$(".movie-box").append(displayPoster);
+			$(".movie-box").append(displayTitle);
+
+
+		}
+	})
+}
+
+var topGenre = function(event){
+	event.preventDefault();
+	console.log(event.target);
+	var genreID = event.target.id;
+
+	sortedGenre = [];
+	genresPic = [];
+
+	//console.log(genreID);
+	fetch(urlTopRated).then(function(response){
+		return response.json();
+	})
+	.then(function(data){
+		//console.log(data);
+		//console.log(data.results[1].genre_ids);
+		//console.log(data.results[1].genre_ids.includes(genreID)); //Returns BOOLEAN if genre ID is inside that genre Array
+		//console.log(data.results.length);
+		for (var i=0; i < data.results.length; i++){
+			//console.log(data.results[i].genre_ids);
+			//var bool = data.results[i].genre_ids.includes(genreID);
+			//console.log(bool);
+			for (var j=0; j <data.results[i].genre_ids.length;j++){
+				console.log(data.results[i].genre_ids[j]);
+				if (genreID == data.results[i].genre_ids[j]){
+					//console.log("true");
+					//console.log(j);
+					//var movieTitle = document.getElementById("0");
+					//movieTitle.innerHTML += "Movie Title " + data.results[i].title;
+					sortedGenre.push(data.results[i].title)
+					genresPic.push(data.results[i].poster_path)
+				}
+			}
+			//console.log(sortedGenre)
+			// if (data.results[i].genre_ids.includes(genreID)){
+			// 	console.log(data.results[i].genre_ids);
+			//sortedGenre.push(data.results[i].genre_ids);
+			// 	testCounter++;
+			// } else{
+			// 	continue;
+			 //}
+		 }
+		 console.log(sortedGenre);
+		 for (var i=0; i < 5; i++){
+			 var movieTitle = document.querySelector("#mov" + i);
+			 //console.log("Movie" + i);
+			 movieTitle.innerHTML = "<img src='"+ urlPoster+genresPic[i] + "' height='200px' width='200px'> <br> Movie Title: " + sortedGenre[i];
+			 //testCounter++;
+		 }
+		 //console.log(sortedGenre);
+		 //console.log(testCounter)
+	});
+	
 }
 
 //utelly settings to pass url
@@ -91,7 +174,10 @@ var showRating = function(rating) {
 }
 
 
-topRated();//shows top rated movies
-utelly("tt0073195");//Getting streaming info for Jaws using imdb ID
-getRating("tt0073195");//Get rating of jaws
-getGenreArray();//Filling genres array
+//topGenre("35");
+comedyEl.addEventListener("click", topGenre);
+dramaEl.addEventListener("click", topGenre);
+crimeEl.addEventListener("click", topGenre);
+romanceEl.addEventListener("click", topGenre);
+fantasyEl.addEventListener("click", topGenre);
+
