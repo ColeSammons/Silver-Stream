@@ -21,7 +21,7 @@ var topRated = function () {
 	var pageCount = 1;
 	var urlTopRated = "https://api.themoviedb.org/3/movie/top_rated?api_key=" + apiKeyTMDB + "&language=en&page=" + pageCount;
 
-	for (var i = 0; i < 100; i++) {
+	for (var i = 0; i < 70; i++) {
 		fetch(urlTopRated).then(function (response) {
 			if (response.ok) {
 				response.json().then(function (data) {
@@ -116,6 +116,30 @@ var getExternalID = function () {
 	}, 1000);
 }
 
+var displaySorted = function() {
+	for(var i =0; i < 40; i++) {
+		//accordian for movies.
+		var list = $("<li>").addClass("accordion-item").attr("data-accordion-item","");
+		var moviePanel = $("<a>").attr("href", "#").addClass("accordion-title").attr("value", movies[i].imdb);
+		var poster = $("<img>").attr("src", urlPoster + movies[i].poster).attr("id", "movie-poster");
+		var title = $("<h3>").text(movies[i].title);
+		var overview = $("<p>").text(movies[i].overview);
+		var release = $("<p>").text(movies[i].release);
+		moviePanel.append(poster);
+		moviePanel.append(title);
+		moviePanel.append(overview);
+		moviePanel.append(release);
+		list.append(moviePanel);
+		$("#movies-display").append(list);
+
+		//drop down accordian
+		var div = $("<div>").addClass("accordion-content").attr("data-tab-content","");
+		var stream = $("<p>").text("Currently streaming at: ");
+		div.append(stream);
+		list.append(div);
+	}
+}
+
 // comedyEl.addEventListener("click", topGenre);
 // dramaEl.addEventListener("click", topGenre);
 // crimeEl.addEventListener("click", topGenre);
@@ -125,11 +149,12 @@ var getExternalID = function () {
 getGenreArray();
 topRated();
 getExternalID();
-
+//Using setTimeout for now until we hook up the event listeners
 setTimeout(function() {
 	sortGenre(18);
 	console.log(sortedGenre);
-}, 5000);
+	displaySorted();
+}, 1000);
 
 
 
