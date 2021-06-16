@@ -4,12 +4,16 @@
     --header-font: 'Dancing Script', cursive; 
 }
 
+body{
+    background-color: var(--secondary-color);
+}
+
 header {
     position: -webkit-sticky;
     position: sticky;
     top: 0;
     z-index: 9999;  
-    background-color: #fff;
+    background-color: var(--secondary-color);
 }
 
 header h1 {
@@ -29,7 +33,7 @@ header a:hover {
 
 header div {
     padding-top: 15px;
-    background-color: white;
+    background-color:var(--secondary-color);
 }
 
 .button {
