@@ -41,7 +41,6 @@ var sortGenre = function (event) {
 	for (let i = 0; i < movies.length; i++) {
 		for (let j = 0; j < movies[i].genre.length; j++) {
 			if (genreID == movies[i].genre[j]) {
-				console.log(movies[i].genre[j]);
 				sortedGenre.push(movies[i]);
 			}
 		}
@@ -51,7 +50,10 @@ var sortGenre = function (event) {
 }
 
 //utelly settings to pass url
-var utelly = function (movieID) {
+var utelly = function (event) {
+	var movieID = event.target.id;
+	console.log(event.target);
+
 	fetch("https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/idlookup?source_id=" + movieID + "&source=imdb&country=us", {
 		"method": "GET",
 		"headers": {
@@ -64,11 +66,20 @@ var utelly = function (movieID) {
 		})
 		.then(function (data) {
 			console.log("Utelly response");
-			console.log(data);
+			console.log(data.collection.locations);
+			for (var i = 0; i < data.collection.locations.length; i++) {
+				var service = document.createElement("a");
+				service.setAttribute("href", data.collection.locations[i].url);
+				service.className = "stream-badge";
+				var icon = document.createElement("img");
+				icon.setAttribute("src", data.collection.locations[i].icon);
+				service.appendChild(icon);
+				event.target.append(service);
+			}
 		})
 		.catch(function (err) {
 			console.error(err);
-			console.log("Error accessing utelly streams");
+			event.target.append("Not available for streaming.")
 		});
 }
 
@@ -103,30 +114,29 @@ var getExternalID = function () {
 				}
 			})
 		}
-	}, 1000);
+	}, 500);
 }
 
 var displaySorted = function () {
 	for (var i = 0; i < sortedGenre.length; i++) {
 		//accordian for movies.
 		var list = $("<li>").addClass("accordion-item").attr("data-accordion-item", "");
-		var moviePanel = $("<a>").attr("href", "#").addClass("accordion-title").attr("value", sortedGenre[i].imdb);
-		var poster = $("<img>").attr("src", urlPoster + sortedGenre[i].poster).attr("id", "movie-poster");
+		var moviePanel = $("<a>").addClass("accordion-title").attr("id", sortedGenre[i].imdb);
+		var poster = $("<img>").attr("src", urlPoster + sortedGenre[i].poster).addClass("movie-poster");
 		var title = $("<h3>").text(sortedGenre[i].title);
 		var overview = $("<p>").text(sortedGenre[i].overview);
 		var release = $("<p>").text(sortedGenre[i].release);
+		var expand = $("<h4>").text("Click on plus icon to see streaming services!").addClass("plus");
+
+		list.one("click", utelly);
+
 		moviePanel.append(poster);
 		moviePanel.append(title);
 		moviePanel.append(overview);
 		moviePanel.append(release);
+		moviePanel.append(expand);
 		list.append(moviePanel);
 		$("#movies-display").append(list);
-
-		//drop down accordian
-		var div = $("<div>").addClass("accordion-content").attr("data-tab-content", "");
-		var stream = $("<p>").text("Currently streaming at: ");
-		div.append(stream);
-		list.append(div);
 	}
 }
 

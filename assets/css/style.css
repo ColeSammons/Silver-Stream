@@ -9,6 +9,7 @@ header {
     position: sticky;
     top: 0;
     z-index: 9999;  
+    background-color: #fff;
 }
 
 header h1 {
@@ -68,8 +69,35 @@ header div {
 }
 
 /* needs to be 1/1.5 ratio */
-#movie-poster {
+.movie-poster {
     width: 125px;
     height: 190px;
 
+}
+
+.show-accordion {
+    display: block;
+}
+
+.stream-badge {
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: lightseagreen;
+    border-radius: 20px;
+    padding: 15px;
+}
+
+.stream-reveal {
+    color: #fff;
+    background-color: var(--primary-color);
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+.accordion-title::before {
+    font-size: 30px;
+}
+.plus {
+    color: black;
 }
