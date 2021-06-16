@@ -50,6 +50,11 @@ header div {
     padding: 0px 0px;
 }
 
+.grid-container {
+    padding-top: 20px;
+
+}
+
 #ratings-header {
     text-align: center;
 }
@@ -66,4 +71,5 @@ header div {
 #movie-poster {
     width: 125px;
     height: 190px;
+
 }
