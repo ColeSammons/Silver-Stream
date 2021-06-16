@@ -1,5 +1,21 @@
-#page-header {
-    background-color: blue;
+:root {
+    --primary-color: rgb(0, 0, 145);
+    --secondary-color: rgb(175, 175, 175);
+    --header-font: 'Dancing Script', cursive; 
+}
+
+header h1 {
+    background-color: var(--primary-color);
+    font-family: var(--header-font);
+    padding-left: 20px;
+}
+
+header a {
+    color: var(--secondary-color);
+}
+
+header a:hover {
+ color: var(--secondary-color);
 }
 
 #page-title {
@@ -11,12 +27,22 @@
 }
 
 .button {
-    background-color: blue;
-    color: grey;
+    background-color: var(--primary-color);
+    color: var(--secondary-color) ;
+}
+
+.button:hover {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+.button:focus {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
 }
 
 .grid-container {
-    padding-top: 20px;
+    padding: 0px 0px;
 }
 
 #ratings-header {
