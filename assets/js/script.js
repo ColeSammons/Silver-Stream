@@ -127,7 +127,7 @@ var displaySorted = function () {
 		var title = $("<h3>").text(sortedGenre[i].title);
 		var overview = $("<p>").text(sortedGenre[i].overview);
 		var release = $("<p>").text(sortedGenre[i].release);
-		var expand = $("<h4>").text("Click on plus icon to see streaming services!").addClass("plus");
+		var expand = $("<h4>").text("Click on the plus icon to see streaming services!").addClass("plus");
 
 		list.one("click", utelly);
 
