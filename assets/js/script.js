@@ -18,15 +18,11 @@ var movies = [];
 var genres = [];
 
 var topRated = function () {
-	// var pageCount = 1;
-	
-
 	for (let i = 0; i < 40; i++) {
 		var urlTopRated = "https://api.themoviedb.org/3/movie/top_rated?api_key=" + apiKeyTMDB + "&language=en&page=" + Math.random() * 150;
 		fetch(urlTopRated).then(function (response) {
 			if (response.ok) {
 				response.json().then(async function (data) {
-					console.log(data);
 					for (let j = 0; j < data.results.length; j++) {
 						if (data.results[j].original_language === "en") {
 							var movie = {
@@ -44,21 +40,18 @@ var topRated = function () {
 			}
 
 		})
-		// pageCount++;
 	}
 }
 
 var sortGenre = function (genreID) {
-		for (let i = 0; i < movies.length; i++) {
-			for (let j = 0; j < movies[i].genre.length; j++) {
-				if (genreID === movies[i].genre[j]) {
-					console.log(movies[i].genre[j]);
-					sortedGenre.push(movies[i]);
-				}
+	for (let i = 0; i < movies.length; i++) {
+		for (let j = 0; j < movies[i].genre.length; j++) {
+			if (genreID === movies[i].genre[j]) {
+				console.log(movies[i].genre[j]);
+				sortedGenre.push(movies[i]);
 			}
 		}
-		// 	var movieTitle = document.querySelector("#mov" + i);
-		// 	movieTitle.innerHTML = "<img src='" + urlPoster + genresPic[i] + "' height='200px' width='200px'> <br> Movie Title: " + sortedGenre[i];
+	}
 }
 
 //utelly settings to pass url
@@ -117,10 +110,10 @@ var getExternalID = function () {
 	}, 1000);
 }
 
-var displaySorted = function() {
-	for(var i =0; i < 100; i++) {
+var displaySorted = function () {
+	for (var i = 0; i < 100; i++) {
 		//accordian for movies.
-		var list = $("<li>").addClass("accordion-item").attr("data-accordion-item","");
+		var list = $("<li>").addClass("accordion-item").attr("data-accordion-item", "");
 		var moviePanel = $("<a>").attr("href", "#").addClass("accordion-title").attr("value", movies[i].imdb);
 		var poster = $("<img>").attr("src", urlPoster + movies[i].poster).attr("id", "movie-poster");
 		var title = $("<h3>").text(movies[i].title);
@@ -134,7 +127,7 @@ var displaySorted = function() {
 		$("#movies-display").append(list);
 
 		//drop down accordian
-		var div = $("<div>").addClass("accordion-content").attr("data-tab-content","");
+		var div = $("<div>").addClass("accordion-content").attr("data-tab-content", "");
 		var stream = $("<p>").text("Currently streaming at: ");
 		div.append(stream);
 		list.append(div);
@@ -151,7 +144,7 @@ getGenreArray();
 topRated();
 getExternalID();
 //Using setTimeout for now until we hook up the event listeners
-setTimeout(function() {
+setTimeout(function () {
 	sortGenre(18);
 	console.log(sortedGenre);
 	displaySorted();
