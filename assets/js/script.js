@@ -70,6 +70,7 @@ var utelly = function (event) {
 			for (var i = 0; i < data.collection.locations.length; i++) {
 				var service = document.createElement("a");
 				service.setAttribute("href", data.collection.locations[i].url);
+				service.setAttribute("target", "_blank");
 				service.className = "stream-badge";
 				var icon = document.createElement("img");
 				icon.setAttribute("src", data.collection.locations[i].icon);
