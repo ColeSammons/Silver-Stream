@@ -3,23 +3,13 @@ var apiKeyTMDB = "8b0814d7463c28b76f719e9285aecbd7";
 var urlGenre = "https://api.themoviedb.org/3/genre/movie/list?api_key=" + apiKeyTMDB + "&language=en";//links to an array of TMDB genres categorized by id
 var urlTopRated = "https://api.themoviedb.org/3/movie/top_rated?api_key=" + apiKeyTMDB + "&language=en";//links to top rated TMDB movies
 var urlPoster = "https://image.tmdb.org/t/p/original";//url for posters. Image location should be added on.
-
-
-//Grabbing Buttons to add Event Listeners
-var crimeEl = document.getElementById("80");
-var comedyEl = document.getElementById("35");
-var romanceEl = document.getElementById("10749");
-var fantasyEl = document.getElementById("14");
-var dramaEl = document.getElementById("18")
-var genresPic = [];
 var sortedGenre = [];
-
 var movies = [];
 var genres = [];
 
 var topRated = function () {
-	for (let i = 0; i < 40; i++) {
-		var urlTopRated = "https://api.themoviedb.org/3/movie/top_rated?api_key=" + apiKeyTMDB + "&language=en&page=" + Math.random() * 150;
+	for (let i = 0; i < 55; i++) {
+		var urlTopRated = "https://api.themoviedb.org/3/movie/top_rated?api_key=" + apiKeyTMDB + "&language=en&page=" + Math.random() * 200;//randomizing pages to display
 		fetch(urlTopRated).then(function (response) {
 			if (response.ok) {
 				response.json().then(async function (data) {
@@ -43,15 +33,21 @@ var topRated = function () {
 	}
 }
 
-var sortGenre = function (genreID) {
+var sortGenre = function (event) {
+	var genreID = event.target.id;
+	sortedGenre = [];
+	$(".accordion-item").remove();
+	console.log(genreID);
 	for (let i = 0; i < movies.length; i++) {
 		for (let j = 0; j < movies[i].genre.length; j++) {
-			if (genreID === movies[i].genre[j]) {
+			if (genreID == movies[i].genre[j]) {
 				console.log(movies[i].genre[j]);
 				sortedGenre.push(movies[i]);
 			}
 		}
 	}
+	displaySorted();
+	console.log(sortedGenre);
 }
 
 //utelly settings to pass url
@@ -111,14 +107,14 @@ var getExternalID = function () {
 }
 
 var displaySorted = function () {
-	for (var i = 0; i < 100; i++) {
+	for (var i = 0; i < sortedGenre.length; i++) {
 		//accordian for movies.
 		var list = $("<li>").addClass("accordion-item").attr("data-accordion-item", "");
-		var moviePanel = $("<a>").attr("href", "#").addClass("accordion-title").attr("value", movies[i].imdb);
-		var poster = $("<img>").attr("src", urlPoster + movies[i].poster).attr("id", "movie-poster");
-		var title = $("<h3>").text(movies[i].title);
-		var overview = $("<p>").text(movies[i].overview);
-		var release = $("<p>").text(movies[i].release);
+		var moviePanel = $("<a>").attr("href", "#").addClass("accordion-title").attr("value", sortedGenre[i].imdb);
+		var poster = $("<img>").attr("src", urlPoster + sortedGenre[i].poster).attr("id", "movie-poster");
+		var title = $("<h3>").text(sortedGenre[i].title);
+		var overview = $("<p>").text(sortedGenre[i].overview);
+		var release = $("<p>").text(sortedGenre[i].release);
 		moviePanel.append(poster);
 		moviePanel.append(title);
 		moviePanel.append(overview);
@@ -134,18 +130,29 @@ var displaySorted = function () {
 	}
 }
 
-// comedyEl.addEventListener("click", topGenre);
-// dramaEl.addEventListener("click", topGenre);
-// crimeEl.addEventListener("click", topGenre);
-// romanceEl.addEventListener("click", topGenre);
-// fantasyEl.addEventListener("click", topGenre);
+$("#28").on("click", sortGenre);
+$("#12").on("click", sortGenre);
+$("#16").on("click", sortGenre);
+$("#35").on("click", sortGenre);
+$("#80").on("click", sortGenre);
+$("#99").on("click", sortGenre);
+$("#18").on("click", sortGenre);
+$("#10751").on("click", sortGenre);
+$("#14").on("click", sortGenre);
+$("#36").on("click", sortGenre);
+$("#27").on("click", sortGenre);
+$("#10402").on("click", sortGenre);
+$("#9648").on("click", sortGenre);
+$("#10749").on("click", sortGenre);
+$("#878").on("click", sortGenre);
+$("#10770").on("click", sortGenre);
+$("#53").on("click", sortGenre);
+$("#10752").on("click", sortGenre);
+$("#37").on("click", sortGenre);
+
+
+
 
 getGenreArray();
 topRated();
 getExternalID();
-//Using setTimeout for now until we hook up the event listeners
-setTimeout(function () {
-	sortGenre(18);
-	console.log(sortedGenre);
-	displaySorted();
-}, 1000);
