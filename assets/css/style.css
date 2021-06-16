@@ -4,7 +4,15 @@
     --header-font: 'Dancing Script', cursive; 
 }
 
+header {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 9999;  
+}
+
 header h1 {
+    margin: 0px 0px;
     background-color: var(--primary-color);
     font-family: var(--header-font);
     padding-left: 20px;
@@ -18,12 +26,9 @@ header a:hover {
  color: var(--secondary-color);
 }
 
-#page-title {
-    color: grey;
-}
-
-#genre-buttons {
-    padding-top: 10px;
+header div {
+    padding-top: 15px;
+    background-color: white;
 }
 
 .button {
