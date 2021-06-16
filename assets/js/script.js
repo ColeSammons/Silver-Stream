@@ -156,6 +156,3 @@ setTimeout(function() {
 	console.log(sortedGenre);
 	displaySorted();
 }, 1000);
-
-
-
