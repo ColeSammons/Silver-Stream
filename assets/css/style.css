@@ -66,6 +66,7 @@ header div {
 .button:focus {
     background-color: var(--secondary-color);
     color: var(--primary-color);
+    font-family: var(--header-font);
 }
 
 
