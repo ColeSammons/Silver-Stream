@@ -62,12 +62,8 @@ header div {
     color: var(--secondary-color) ;
 }
 
-.button:hover {
-    background-color: rgb(41, 41, 145);
-    color: #fff;
-}
-
-.button::selection {
+.button:hover,
+.button:focus {
     background-color: var(--secondary-color);
     color: var(--primary-color);
     font-family: var(--header-font);
