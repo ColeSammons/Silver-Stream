@@ -14,8 +14,6 @@ body{
 }
 
 header {
-    /* position: -webkit-sticky;
-    position: sticky; */
     top: 0;
     z-index: 9999;  
     background-color: var(--secondary-color);
@@ -47,11 +45,11 @@ header div {
 }
 
 .button:hover {
-    background-color: var(--secondary-color);
-    color: var(--primary-color);
+    background-color: rgb(41, 41, 145);
+    color: #fff;
 }
 
-.button:focus {
+.button::selection {
     background-color: var(--secondary-color);
     color: var(--primary-color);
 }
