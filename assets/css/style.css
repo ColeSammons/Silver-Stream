@@ -10,6 +10,7 @@ body{
 
 .button {
     border-radius: 10px;
+    font-weight: bold;
 }
 
 header {
