@@ -36,6 +36,7 @@ var topRated = function () {
 var sortGenre = function (event) {
 	var genreID = event.target.id;
 	sortedGenre = [];
+	document.getElementById("media").classList.add("hide");
 	$(".accordion-item").remove();
 	console.log(genreID);
 	for (let i = 0; i < movies.length; i++) {
