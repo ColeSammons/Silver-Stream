@@ -14,11 +14,7 @@ body{
 }
 
 header {
-<<<<<<< HEAD
-    /*position: -webkit-sticky;
-=======
     /* position: -webkit-sticky;
->>>>>>> 299215ed8096acfafd450921799d155455add4f6
     position: sticky; */
     top: 0;
     z-index: 9999;  
