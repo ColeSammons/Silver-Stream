@@ -5,7 +5,10 @@
 }
 
 body{
-    background-color: var(--secondary-color);
+    /* background-color: var(--secondary-color); */
+    background-image: url("/images/SilverStreamHeaderLogo.png");
+    background-repeat: repeat;
+
 }
 
 .button {
@@ -16,7 +19,8 @@ body{
 header {
     top: 0;
     z-index: 9999;  
-    background-color: var(--secondary-color);
+    background: transparent;
+    
 }
 
 header h1 {
@@ -36,7 +40,7 @@ header a:hover {
 
 header div {
     padding-top: 15px;
-    background-color:var(--secondary-color);
+    background: transparent;
 }
 
 .button {
