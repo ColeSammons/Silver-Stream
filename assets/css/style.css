@@ -1,6 +1,6 @@
 :root {
     --primary-color: rgb(0, 0, 145);
-    --secondary-color: rgb(175, 175, 175);
+    --secondary-color: rgb(216, 213, 213);
     --header-font: 'Dancing Script', cursive; 
 }
 
@@ -14,20 +14,16 @@ body{
 }
 
 header {
-    top: 0;
-    z-index: 9999;  
-    background-color: var(--secondary-color);
+    background-color: #293745;
 }
 
 header h1 {
-    margin: 0px 0px;
-    background-color: var(--primary-color);
-    font-family: var(--header-font);
-    padding-left: 20px;
+    font-family: 'Big Shoulders Stencil Display', cursive;
+    margin-bottom: 0px;
 }
 
 header a {
-    color: var(--secondary-color);
+    color: rgb(172, 172, 23);;
 }
 
 header a:hover {
@@ -108,3 +104,53 @@ header div {
 .plus {
     color: black;
 }
+
+
+
+/* Homepage styles */
+.genre-card {
+    width: 290px;
+    border-radius: 20px;
+    transition:.5s;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.genre-card:hover {
+    width: 300px;
+    box-shadow: 0 0 11px rgba(33,33,33,.8);
+}
+
+.grid-container {
+    background-color: #fff;
+    max-width: 950px;
+    border: 0px 20px solid black;
+}
+
+.card {
+    border: 0px;
+}
+
+@media screen and (max-width: 872px) {
+    .grid-container {
+        max-width: 400px;
+    }
+}
+
+@media screen and (min-width: 871px) {
+    .grid-container {
+        border-left: rgb(179, 176, 176) solid 1px;
+        border-right:rgb(179, 176, 176) solid 1px;
+    }
+
+    .grid-x {
+        margin-top: 15px;
+    }
+
+    .bottom-border {
+        border-bottom: var(--secondary-color) solid 3px;
+    }
+}
+
