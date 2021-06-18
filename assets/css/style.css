@@ -151,7 +151,7 @@ header div {
   color: black;
 }
 
-@media screen and (max-width: 872px) {
+@media screen and (max-width: 890px) {
   .grid-container {
     max-width: 400px;
   }
@@ -163,7 +163,7 @@ header div {
   }
 }
 
-@media screen and (min-width: 872px) {
+@media screen and (min-width: 890px) {
   .grid-container {
     border-left: rgb(179, 176, 176) solid 1px;
     border-right: rgb(179, 176, 176) solid 1px;
