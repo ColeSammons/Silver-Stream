@@ -142,6 +142,7 @@ header div {
   color: var(--primary-color);
   width: 100%;
   transition: .7s;
+  z-index: 9999;
 }
 
 .fixedbutton:hover {
