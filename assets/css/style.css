@@ -29,7 +29,8 @@ header a {
 }
 
 header a:hover {
-  color: var(--secondary-color);
+  color: rgb(240, 240, 12);
+  text-shadow: 0 0 11px rgba(8, 8, 8, 0.8);
 }
 
 header div {
@@ -140,7 +141,7 @@ header div {
   background-color: var(--tertiary-color);
   color: var(--primary-color);
   width: 100%;
-  transition: .5s;
+  transition: .7s;
 }
 
 .fixedbutton:hover {
