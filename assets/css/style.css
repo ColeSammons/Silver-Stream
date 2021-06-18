@@ -1,6 +1,7 @@
 :root {
     --primary-color: rgb(0, 0, 145);
-    --secondary-color: rgb(216, 213, 213);
+    /* --secondary-color: rgb(216, 213, 213); */
+    --secondary-color: #b8b8b8;
     --header-font: 'Dancing Script', cursive; 
 }
 
@@ -23,7 +24,8 @@ header h1 {
 }
 
 header a {
-    color: rgb(172, 172, 23);;
+    color: rgb(172, 172, 23);
+    margin-right: 15px;
 }
 
 header a:hover {
@@ -133,9 +135,19 @@ header div {
     border: 0px;
 }
 
+.icon {
+    height: 60px;
+}
+
 @media screen and (max-width: 872px) {
     .grid-container {
         max-width: 400px;
+    }
+}
+
+@media screen and (max-width: 638px){
+    .icon {
+        height: 30px;
     }
 }
 
