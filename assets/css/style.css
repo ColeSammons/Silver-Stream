@@ -162,7 +162,7 @@ header div {
   }
 }
 
-@media screen and (min-width: 871px) {
+@media screen and (min-width: 872px) {
   .grid-container {
     border-left: rgb(179, 176, 176) solid 1px;
     border-right: rgb(179, 176, 176) solid 1px;
