@@ -75,8 +75,7 @@ header div {
 
 /* needs to be 1/1.5 ratio */
 .movie-poster {
-  width: 125px;
-  height: 190px;
+  width: 200px;
 }
 
 .show-accordion {
@@ -141,14 +140,18 @@ header div {
   background-color: var(--tertiary-color);
   color: var(--primary-color);
   width: 100%;
-  transition: .7s;
+  transition: 0.7s;
   z-index: 9999;
 }
 
 .fixedbutton:hover {
-    font-size: 16px;
-  background-color: rgb(238, 238, 16);;
+  font-size: 16px;
+  background-color: rgb(238, 238, 16);
   color: black;
+}
+
+.pointer {
+    cursor: pointer;
 }
 
 @media screen and (max-width: 890px) {
@@ -160,6 +163,15 @@ header div {
 @media screen and (max-width: 638px) {
   .icon {
     height: 30px;
+  }
+
+  .media-object {
+    flex-wrap: wrap;
+    text-align: center;
+  }
+
+  .streaming {
+    text-align: center;
   }
 }
 

@@ -72,7 +72,7 @@ var getExternalID = function () {
 var saveLocal = function() {
     setTimeout(function() {
         window.localStorage.removeItem("movies");
-        console.log("hello");
+        console.log("saved");
         window.localStorage.setItem("movies", JSON.stringify(movies));
     },1200)
 }

@@ -56,26 +56,95 @@ var utelly = function (event) {
 		});
 }
 
+// var displaySorted = function () {
+// 	for (var i = 0; i < sortedGenre.length; i++) {
+// 		//accordian for movies.
+// 		var list = $("<li>").addClass("accordion-item").attr("data-accordion-item", "");
+// 		var moviePanel = $("<a>").addClass("accordion-title").attr("id", sortedGenre[i].imdb);
+// 		var poster = $("<img>").attr("src", urlPoster + sortedGenre[i].poster).addClass("movie-poster");
+// 		var title = $("<h3>").text(sortedGenre[i].title);
+// 		var overview = $("<p>").text(sortedGenre[i].overview);
+// 		var release = $("<p>").text(sortedGenre[i].release);
+// 		var expand = $("<h4>").text("Click on the plus icon to see streaming services!").addClass("plus");
+
+// 		list.one("click", utelly);
+
+// 		moviePanel.append(poster);
+// 		moviePanel.append(title);
+// 		moviePanel.append(overview);
+// 		moviePanel.append(release);
+// 		moviePanel.append(expand);
+// 		list.append(moviePanel);
+// 		$("#movies-display").append(list);
+// 	}
+// }
+
 var displaySorted = function () {
 	for (var i = 0; i < sortedGenre.length; i++) {
-		//accordian for movies.
-		var list = $("<li>").addClass("accordion-item").attr("data-accordion-item", "");
-		var moviePanel = $("<a>").addClass("accordion-title").attr("id", sortedGenre[i].imdb);
-		var poster = $("<img>").attr("src", urlPoster + sortedGenre[i].poster).addClass("movie-poster");
-		var title = $("<h3>").text(sortedGenre[i].title);
-		var overview = $("<p>").text(sortedGenre[i].overview);
-		var release = $("<p>").text(sortedGenre[i].release);
-		var expand = $("<h4>").text("Click on the plus icon to see streaming services!").addClass("plus");
+		//poster button
+		var button = $("<button>").addClass("pointer").attr("data-open", sortedGenre[i].imdb);
+		var posterIn = $("<img>").attr("src", urlPoster + sortedGenre[i].poster).addClass("movie-poster");
 
-		list.one("click", utelly);
+		//append button
+		// button.append(posterIn);
+		// $("#movies-display").append(button);
 
-		moviePanel.append(poster);
-		moviePanel.append(title);
-		moviePanel.append(overview);
-		moviePanel.append(release);
-		moviePanel.append(expand);
-		list.append(moviePanel);
-		$("#movies-display").append(list);
+		var reveal = $("<div>").addClass("reveal").attr("id", sortedGenre[i].imdb).attr("data-reveal", "");
+		var title = $("<h3>").text("Working");
+		var buttonClose = $("<button>").addClass("close-button").attr("type", "button").attr("data-close", "").attr("aria-label", "Close modal");
+		var plus = $("<span>").text("x").attr("aria-hidden", "true");
+
+		button.on("click", function(event) {
+			event.preventDefault();
+            var reveal = '#' + $(this).attr('data-open');
+            console.log(reveal);
+			var popup = new Foundation.Reveal($(reveal));
+			popup.open();
+		});
+
+		button.append(posterIn);
+		buttonClose.append(plus);
+		reveal.append(title);
+		reveal.append(buttonClose);
+		$("#movies-display").append(button);
+		$("#modal-display").append(reveal);
+
+
+
+
+
+
+
+
+
+		//reveal modal
+		// var reveal = $("<div>").addClass("reveal grid-container").attr("id", sortedGenre[i].imdb).attr("data-reveal", "");
+		// var mediaObj = $("<div>").addClass("media-object grid-x align-center");
+		// var mediaObjSecImg = $("<div>").addClass("media-object-section shrink cell");
+		// var posterOut = $("<img>").addClass("movie-poster").attr("src", urlPoster + sortedGenre[i].poster);
+		// var mediaObjSecInfo = $("<div>").addClass("media-object-section cell");
+		// var title = $("<h3>").text(sortedGenre[i].title);
+		// var release = $("<p>").text(sortedGenre[i].release);
+		// var overview = $("<p>").text(sortedGenre[i].overview);
+		// var stream = $("<div>").addClass("streaming");
+		// var streamServices = $("<h4>").text("Streaming Services:");
+		// var buttonClose = $("<button>").addClass("close-button").attr("type", "button").attr("data-close", "").attr("aria-label", "Close modal");
+		// var plus = $("<span>").text("&times;").attr("aria-hidden", "true");
+
+		// //appending
+		// mediaObjSecImg.append(posterOut);
+		// mediaObjSecInfo.append(title);
+		// mediaObjSecInfo.append(release);
+		// mediaObjSecInfo.append(overview);
+		// mediaObj.append(mediaObjSecImg);
+		// mediaObj.append(mediaObjSecInfo);
+		// stream.append(streamServices);
+		// buttonClose.append(plus);
+
+		// reveal.append(mediaObj);
+		// reveal.append(stream);
+		// reveal.append(buttonClose);
+		// $("#movies-display").append(reveal);
 	}
 }
 
@@ -84,28 +153,5 @@ var loadPage = function() {
 	console.log(movies);
 	sortGenre()
 }
-
-// $("#28").on("click", sortGenre);
-// $("#12").on("click", sortGenre);
-// $("#16").on("click", sortGenre);
-// $("#35").on("click", sortGenre);
-// $("#80").on("click", sortGenre);
-// $("#99").on("click", sortGenre);
-// $("#18").on("click", sortGenre);
-// $("#10751").on("click", sortGenre);
-// $("#14").on("click", sortGenre);
-// $("#36").on("click", sortGenre);
-// $("#27").on("click", sortGenre);
-// $("#10402").on("click", sortGenre);
-// $("#9648").on("click", sortGenre);
-// $("#10749").on("click", sortGenre);
-// $("#878").on("click", sortGenre);
-// $("#10770").on("click", sortGenre);
-// $("#53").on("click", sortGenre);
-// $("#10752").on("click", sortGenre);
-// $("#37").on("click", sortGenre);
-
-
-
 
 loadPage();
