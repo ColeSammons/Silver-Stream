@@ -88,7 +88,7 @@ var displaySorted = function () {
 			popup.open();
 		});
 
-		reveal.on("click", "button", function(event) {
+		reveal.one("click", "button", function(event) {
 			console.log(event.target.parentNode);
 			utelly(event.target.parentNode);
 		})
