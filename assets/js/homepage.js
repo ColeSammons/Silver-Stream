@@ -74,7 +74,7 @@ var saveLocal = function() {
         window.localStorage.removeItem("movies");
         console.log("saved");
         window.localStorage.setItem("movies", JSON.stringify(movies));
-    },1200)
+    },1500)
 }
 
 

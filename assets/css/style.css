@@ -76,7 +76,17 @@ header div {
 /* needs to be 1/1.5 ratio */
 .movie-poster {
   width: 200px;
+  transition: .5s;
 }
+
+.movie-poster-out {
+    width: 200px;
+}
+
+.movie-poster:hover {
+    width: 210px;
+    box-shadow: 0 0 11px rgba(33, 33, 33, 0.8);
+    }
 
 .show-accordion {
   display: block;
@@ -152,6 +162,7 @@ header div {
 
 .pointer {
     cursor: pointer;
+    margin-bottom: 10px;
 }
 
 @media screen and (max-width: 890px) {

@@ -23,8 +23,8 @@ var sortGenre = function (event) {
 
 //utelly settings to pass url
 var utelly = function (event) {
-	var movieID = event.target.id;
-	console.log(event.target);
+	var movieID = event.id;
+	console.log(movieID);
 
 	fetch("https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/idlookup?source_id=" + movieID + "&source=imdb&country=us", {
 		"method": "GET",
@@ -38,7 +38,7 @@ var utelly = function (event) {
 		})
 		.then(function (data) {
 			console.log("Utelly response");
-			console.log(data.collection.locations);
+			console.log(data);
 			for (var i = 0; i < data.collection.locations.length; i++) {
 				var service = document.createElement("a");
 				service.setAttribute("href", data.collection.locations[i].url);
@@ -47,7 +47,7 @@ var utelly = function (event) {
 				var icon = document.createElement("img");
 				icon.setAttribute("src", data.collection.locations[i].icon);
 				service.appendChild(icon);
-				event.target.append(service);
+				event.append(service);
 			}
 		})
 		.catch(function (err) {
@@ -56,29 +56,6 @@ var utelly = function (event) {
 		});
 }
 
-// var displaySorted = function () {
-// 	for (var i = 0; i < sortedGenre.length; i++) {
-// 		//accordian for movies.
-// 		var list = $("<li>").addClass("accordion-item").attr("data-accordion-item", "");
-// 		var moviePanel = $("<a>").addClass("accordion-title").attr("id", sortedGenre[i].imdb);
-// 		var poster = $("<img>").attr("src", urlPoster + sortedGenre[i].poster).addClass("movie-poster");
-// 		var title = $("<h3>").text(sortedGenre[i].title);
-// 		var overview = $("<p>").text(sortedGenre[i].overview);
-// 		var release = $("<p>").text(sortedGenre[i].release);
-// 		var expand = $("<h4>").text("Click on the plus icon to see streaming services!").addClass("plus");
-
-// 		list.one("click", utelly);
-
-// 		moviePanel.append(poster);
-// 		moviePanel.append(title);
-// 		moviePanel.append(overview);
-// 		moviePanel.append(release);
-// 		moviePanel.append(expand);
-// 		list.append(moviePanel);
-// 		$("#movies-display").append(list);
-// 	}
-// }
-
 var displaySorted = function () {
 	for (var i = 0; i < sortedGenre.length; i++) {
 		//poster button
@@ -86,11 +63,20 @@ var displaySorted = function () {
 		var posterIn = $("<img>").attr("src", urlPoster + sortedGenre[i].poster).addClass("movie-poster");
 
 		//append button
-		// button.append(posterIn);
-		// $("#movies-display").append(button);
+		button.append(posterIn);
+		$("#movies-display").append(button);
 
-		var reveal = $("<div>").addClass("reveal").attr("id", sortedGenre[i].imdb).attr("data-reveal", "");
-		var title = $("<h3>").text("Working");
+		//reveal modal
+		var reveal = $("<div>").addClass("reveal grid-container").attr("id", sortedGenre[i].imdb).attr("data-reveal", "");
+		var mediaObj = $("<div>").addClass("media-object grid-x align-center");
+		var mediaObjSecImg = $("<div>").addClass("media-object-section shrink cell");
+		var posterOut = $("<img>").addClass("movie-poster-out").attr("src", urlPoster + sortedGenre[i].poster);
+		var mediaObjSecInfo = $("<div>").addClass("media-object-section cell");
+		var title = $("<h3>").text(sortedGenre[i].title);
+		var release = $("<p>").text(sortedGenre[i].release);
+		var overview = $("<p>").text(sortedGenre[i].overview);
+		// var stream = $("<div>").addClass("streaming");
+		var streamServices = $("<button>").text("Click to see streaming services").attr("type", "button").addClass("button");
 		var buttonClose = $("<button>").addClass("close-button").attr("type", "button").attr("data-close", "").attr("aria-label", "Close modal");
 		var plus = $("<span>").text("x").attr("aria-hidden", "true");
 
@@ -102,49 +88,27 @@ var displaySorted = function () {
 			popup.open();
 		});
 
-		button.append(posterIn);
+		reveal.on("click", "button", function(event) {
+			console.log(event.target.parentNode);
+			utelly(event.target.parentNode);
+		})
+
+		//appending
+		mediaObjSecImg.append(posterOut);
+		mediaObjSecInfo.append(title);
+		mediaObjSecInfo.append(release);
+		mediaObjSecInfo.append(overview);
+		mediaObj.append(mediaObjSecImg);
+		mediaObj.append(mediaObjSecInfo);
+		// stream.append(streamServices);
 		buttonClose.append(plus);
-		reveal.append(title);
+
+		reveal.append(mediaObj);
+		// reveal.append(stream);
 		reveal.append(buttonClose);
+		reveal.append(streamServices);
 		$("#movies-display").append(button);
 		$("#modal-display").append(reveal);
-
-
-
-
-
-
-
-
-
-		//reveal modal
-		// var reveal = $("<div>").addClass("reveal grid-container").attr("id", sortedGenre[i].imdb).attr("data-reveal", "");
-		// var mediaObj = $("<div>").addClass("media-object grid-x align-center");
-		// var mediaObjSecImg = $("<div>").addClass("media-object-section shrink cell");
-		// var posterOut = $("<img>").addClass("movie-poster").attr("src", urlPoster + sortedGenre[i].poster);
-		// var mediaObjSecInfo = $("<div>").addClass("media-object-section cell");
-		// var title = $("<h3>").text(sortedGenre[i].title);
-		// var release = $("<p>").text(sortedGenre[i].release);
-		// var overview = $("<p>").text(sortedGenre[i].overview);
-		// var stream = $("<div>").addClass("streaming");
-		// var streamServices = $("<h4>").text("Streaming Services:");
-		// var buttonClose = $("<button>").addClass("close-button").attr("type", "button").attr("data-close", "").attr("aria-label", "Close modal");
-		// var plus = $("<span>").text("&times;").attr("aria-hidden", "true");
-
-		// //appending
-		// mediaObjSecImg.append(posterOut);
-		// mediaObjSecInfo.append(title);
-		// mediaObjSecInfo.append(release);
-		// mediaObjSecInfo.append(overview);
-		// mediaObj.append(mediaObjSecImg);
-		// mediaObj.append(mediaObjSecInfo);
-		// stream.append(streamServices);
-		// buttonClose.append(plus);
-
-		// reveal.append(mediaObj);
-		// reveal.append(stream);
-		// reveal.append(buttonClose);
-		// $("#movies-display").append(reveal);
 	}
 }
 
