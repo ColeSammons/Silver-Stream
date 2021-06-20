@@ -38,6 +38,12 @@ header div {
   background-color: var(--secondary-color);
 }
 
+.favorites {
+    font-family: "Big Shoulders Stencil Display", cursive;
+    text-align: center;
+    color: black;
+}
+
 .button {
   background-color: var(--primary-color);
   color: var(--secondary-color);
@@ -88,16 +94,18 @@ header div {
     box-shadow: 0 0 11px rgba(33, 33, 33, 0.8);
     }
 
-.show-accordion {
-  display: block;
+.stream-badge {
+  background-color: var(--tertiary-color);
+  border-radius: 20px;
+  padding: 18px;
 }
 
-.stream-badge {
-  margin-left: 5px;
-  margin-right: 5px;
-  background-color: lightseagreen;
-  border-radius: 20px;
-  padding: 15px;
+.stream-badge:hover {
+    background-color: rgb(245, 245, 12);
+}
+
+.stream-badge img {
+    margin: 10px;
 }
 
 .stream-reveal {
@@ -137,6 +145,10 @@ header div {
   border: 0px 20px solid black;
 }
 
+.reveal {
+    border-radius: 20px;
+}
+
 .card {
   border: 0px;
 }
@@ -151,7 +163,7 @@ header div {
   color: var(--primary-color);
   width: 100%;
   transition: 0.7s;
-  z-index: 9999;
+  z-index: 1000;
 }
 
 .fixedbutton:hover {
@@ -163,6 +175,25 @@ header div {
 .pointer {
     cursor: pointer;
     margin-bottom: 10px;
+}
+
+.saveButton,
+.streamButton {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.saveButton:hover,
+.saveButton:active,
+.streamButton:active,
+.streamButton:hover {
+    background-color: var(--primary-color);
+    color: var(--tertiary-color);
+}
+
+.saveButton:focus {
+    background-color: var(--tertiary-color);
+    color: black;
 }
 
 @media screen and (max-width: 890px) {

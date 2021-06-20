@@ -2,6 +2,7 @@ $(document).foundation();//initializes foundation
 var urlPoster = "https://image.tmdb.org/t/p/original";//url for posters. Image location should be added on.
 var sortedGenre = [];
 movies = [];
+savedMovies = [];
 
 var sortGenre = function (event) {
 	var url = document.location.href;
@@ -39,20 +40,22 @@ var utelly = function (event) {
 		.then(function (data) {
 			console.log("Utelly response");
 			console.log(data);
-			for (var i = 0; i < data.collection.locations.length; i++) {
-				var service = document.createElement("a");
-				service.setAttribute("href", data.collection.locations[i].url);
-				service.setAttribute("target", "_blank");
-				service.className = "stream-badge";
-				var icon = document.createElement("img");
-				icon.setAttribute("src", data.collection.locations[i].icon);
-				service.appendChild(icon);
-				event.append(service);
+				for (var i = 0; i < data.collection.locations.length; i++) {
+					var service = document.createElement("a");
+					service.setAttribute("href", data.collection.locations[i].url);
+					service.setAttribute("target", "_blank");
+					service.className = "stream-badge";
+					var icon = document.createElement("img");
+					icon.setAttribute("src", data.collection.locations[i].icon);
+					service.appendChild(icon);
+					event.append(service);
 			}
 		})
 		.catch(function (err) {
 			console.error(err);
-			event.target.append("Not available for streaming.")
+			var h3 = document.createElement("h3");
+			h3.textContent = "Not available for streaming";
+			event.append(h3);
 		});
 }
 
@@ -75,22 +78,28 @@ var displaySorted = function () {
 		var title = $("<h3>").text(sortedGenre[i].title);
 		var release = $("<p>").text(sortedGenre[i].release);
 		var overview = $("<p>").text(sortedGenre[i].overview);
-		// var stream = $("<div>").addClass("streaming");
-		var streamServices = $("<button>").text("Click to see streaming services").attr("type", "button").addClass("button");
+		var save = $("<button>").text("Save to favorites").attr("type", "button").addClass("button saveButton cell").attr("id", i);
+		var streamServices = $("<button>").text("Click to see streaming services").attr("type", "button").addClass("button streamButton cell");
 		var buttonClose = $("<button>").addClass("close-button").attr("type", "button").attr("data-close", "").attr("aria-label", "Close modal");
 		var plus = $("<span>").text("x").attr("aria-hidden", "true");
 
-		button.on("click", function(event) {
+		save.one("click", function(event) {
+			var id = event.target.id;
+			saveFavorites(id);
+		})
+
+		button.on("click", function (event) {
 			event.preventDefault();
-            var reveal = '#' + $(this).attr('data-open');
-            console.log(reveal);
+			var reveal = '#' + $(this).attr('data-open');
+			console.log(reveal);
 			var popup = new Foundation.Reveal($(reveal));
 			popup.open();
 		});
 
-		reveal.one("click", "button", function(event) {
+		streamServices.one("click", function (event) {
 			console.log(event.target.parentNode);
 			utelly(event.target.parentNode);
+			event.target.remove();
 		})
 
 		//appending
@@ -100,22 +109,32 @@ var displaySorted = function () {
 		mediaObjSecInfo.append(overview);
 		mediaObj.append(mediaObjSecImg);
 		mediaObj.append(mediaObjSecInfo);
-		// stream.append(streamServices);
 		buttonClose.append(plus);
-
 		reveal.append(mediaObj);
-		// reveal.append(stream);
 		reveal.append(buttonClose);
+		reveal.append(save);
 		reveal.append(streamServices);
 		$("#movies-display").append(button);
 		$("#modal-display").append(reveal);
 	}
 }
 
-var loadPage = function() {
+var loadPage = function () {
 	movies = JSON.parse(localStorage.getItem("movies"));
 	console.log(movies);
 	sortGenre()
 }
 
+var saveFavorites = function(id) {
+	console.log(sortedGenre[id]);
+	savedMovies.push(sortedGenre[id]);
+	console.log(savedMovies);
+	window.localStorage.setItem("savedMovies", JSON.stringify(savedMovies));
+}
+
+var loadFavorites = function() {
+	savedMovies = JSON.parse(localStorage.getItem("savedMovies"));
+}
+
 loadPage();
+loadFavorites();

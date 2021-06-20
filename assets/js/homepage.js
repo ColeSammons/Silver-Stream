@@ -4,6 +4,7 @@ var urlGenre = "https://api.themoviedb.org/3/genre/movie/list?api_key=" + apiKey
 var urlTopRated = "https://api.themoviedb.org/3/movie/top_rated?api_key=" + apiKeyTMDB + "&language=en";//links to top rated TMDB movies
 var movies = [];
 var genres = [];
+var savedMovies = [];
 
 //Filling the genres array with genre objects that have a name and id available
 var getGenreArray = function () {
@@ -76,7 +77,6 @@ var saveLocal = function() {
         window.localStorage.setItem("movies", JSON.stringify(movies));
     },1500)
 }
-
 
 
 getGenreArray();
