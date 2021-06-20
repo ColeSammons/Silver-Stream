@@ -133,7 +133,10 @@ var saveFavorites = function(id) {
 }
 
 var loadFavorites = function() {
-	savedMovies = JSON.parse(localStorage.getItem("savedMovies"));
+	tempMovies = JSON.parse(localStorage.getItem("savedMovies"));
+	if(tempMovies != null) {
+		savedMovies = tempMovies;
+	}
 }
 
 loadPage();
