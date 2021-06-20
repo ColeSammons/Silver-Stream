@@ -8,6 +8,9 @@
 ## Purpose
 Silver Stream is a website that allows the user to generate a list of random movies based on the genre they select.  If the user is happy with a movie, they can choose to save the movie and view they're saved movies in their movie gallery.  The user can also choose to view where the movie can be streamed.  Silver Stream is designed to help avid movie watchers save when trying to decide what movie to watch.
 
+## URL
+https://colesammons.github.io/Silver-Stream/
+
 ## Built With
 * JQuery
 * Foundation
@@ -16,9 +19,6 @@ Silver Stream is a website that allows the user to generate a list of random mov
 * HTML
 * Git
 * Github
-
-## URL
-https://colesammons.github.io/Silver-Stream/
 
 ## Editors
 * Cole Sammons
