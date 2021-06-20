@@ -1,6 +1,8 @@
 # Silver Stream
 
 
+<img width="1717" alt="SilverStream" src="https://user-images.githubusercontent.com/82801290/122688050-c72cc400-d1ce-11eb-989e-b15fbf98fff6.png">
+
 
 
 ## Purpose
@@ -22,13 +24,3 @@ https://colesammons.github.io/Silver-Stream/
 * Cole Sammons
 * Jazmyne Bradley
 * Chris Rose
-
-## Technologies
-
--JQuery
--Foundation
--Javascript
--CSS
--HTML
--Git
--Github
