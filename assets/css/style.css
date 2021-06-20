@@ -1,0 +1,244 @@
+:root {
+  --primary-color: #293745;
+  --secondary-color: #b8b8b8;
+  --tertiary-color: rgb(221, 221, 27);
+  --header-font: "Dancing Script", cursive;
+}
+
+body {
+  background-color: var(--secondary-color);
+}
+
+.button {
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+header {
+  background-color: var(--primary-color);
+}
+
+header h1 {
+  font-family: "Big Shoulders Stencil Display", cursive;
+  margin-bottom: 0px;
+}
+
+header a {
+  color: var(--tertiary-color);
+  margin-right: 15px;
+}
+
+header a:hover {
+  color: rgb(240, 240, 12);
+  text-shadow: 0 0 11px rgba(8, 8, 8, 0.8);
+}
+
+header div {
+  padding-top: 15px;
+  background-color: var(--secondary-color);
+}
+
+.favorites {
+    font-family: "Big Shoulders Stencil Display", cursive;
+    text-align: center;
+    color: black;
+}
+
+.button {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+.button:hover {
+  background-color: rgb(41, 41, 145);
+  color: #fff;
+}
+
+.button::selection {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+.grid-container {
+  padding: 0px 0px;
+}
+
+.grid-container {
+  padding-top: 20px;
+}
+
+#ratings-header {
+  text-align: center;
+}
+
+#ratings-options {
+  margin-right: 20px;
+}
+
+#movies-display {
+  margin: 20px 50px;
+}
+
+/* needs to be 1/1.5 ratio */
+.movie-poster {
+  width: 200px;
+  transition: .5s;
+}
+
+.movie-poster-out {
+    width: 200px;
+}
+
+.movie-poster:hover {
+    width: 210px;
+    box-shadow: 0 0 11px rgba(33, 33, 33, 0.8);
+    }
+
+.stream-badge {
+  background-color: var(--tertiary-color);
+  border-radius: 20px;
+  padding: 18px;
+}
+
+.stream-badge:hover {
+    background-color: rgb(245, 245, 12);
+}
+
+.stream-badge img {
+    margin: 10px;
+}
+
+.stream-reveal {
+  color: #fff;
+  background-color: var(--primary-color);
+  border-radius: 20px;
+  padding: 25px;
+  margin-bottom: 30px;
+}
+
+.accordion-title::before {
+  font-size: 30px;
+}
+.plus {
+  color: black;
+}
+
+/* Homepage styles */
+.genre-card {
+  width: 290px;
+  border-radius: 20px;
+  transition: 0.5s;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.genre-card:hover {
+  width: 300px;
+  box-shadow: 0 0 11px rgba(33, 33, 33, 0.8);
+}
+
+.grid-container {
+  background-color: #fff;
+  max-width: 950px;
+  border: 0px 20px solid black;
+}
+
+.reveal {
+    border-radius: 20px;
+}
+
+.card {
+  border: 0px;
+}
+
+.icon {
+  height: 60px;
+}
+
+.fixedbutton {
+  margin: 0px;
+  background-color: var(--tertiary-color);
+  color: var(--primary-color);
+  width: 100%;
+  transition: 0.7s;
+  z-index: 1000;
+}
+
+.fixedbutton:hover {
+  font-size: 16px;
+  background-color: rgb(238, 238, 16);
+  color: black;
+}
+
+.pointer {
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.saveButton,
+.streamButton {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.saveButton:hover,
+.saveButton:active,
+.streamButton:active,
+.streamButton:hover {
+    background-color: var(--primary-color);
+    color: var(--tertiary-color);
+}
+
+.saveButton:focus {
+    background-color: var(--tertiary-color);
+    color: black;
+}
+
+@media screen and (max-width: 890px) {
+  .grid-container {
+    max-width: 400px;
+  }
+}
+
+@media screen and (max-width: 638px) {
+  .icon {
+    height: 30px;
+  }
+
+  .media-object {
+    flex-wrap: wrap;
+    text-align: center;
+  }
+
+  .streaming {
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 890px) {
+  .grid-container {
+    border-left: rgb(179, 176, 176) solid 1px;
+    border-right: rgb(179, 176, 176) solid 1px;
+  }
+
+  .grid-x {
+    margin-top: 15px;
+  }
+
+  .bottom-border {
+    border-bottom: var(--secondary-color) solid 3px;
+  }
+
+  .fixedbutton {
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    width: 250px;
+  }
+
+  .button-wrapper {
+    margin: 0px;
+  }
+}
