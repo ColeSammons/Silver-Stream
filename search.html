@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html class="no-js" lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,20 +13,26 @@
         integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
+
 <body>
     <header class="align-spaced">
-        <h1 class="text-center"><a href="./index.html">Silver Stream</a><img
+        <h1 class="text-center"><a href="./index.html" onClick="window.location.reload();">Silver Stream</a><img
                 src="./images/projector.png" alt="projector" class="icon">
         </h1>
     </header>
-    <h2 class="favorites">Search Results:</h2>
+    <div class="align-spaced grid-x button-wrapper">
+        <a type="button" class="button fixedbutton" href="./gallery.html">View Your Movie Gallery!</a>
+    </div>  
+
     <section>
         <div class="grid-x align-spaced" id="movies-display"></div>
     </section>
     <div id="modal-display"></div>
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
         integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
-    <script src="./assets/js/gallery.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
+
 </html>

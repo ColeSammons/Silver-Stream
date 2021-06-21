@@ -1,5 +1,3 @@
-var searchEl = document.getElementById("search");
-
 
 $(document).foundation();//initializes foundation
 var urlPoster = "https://image.tmdb.org/t/p/original";//url for posters. Image location should be added on.
@@ -142,13 +140,7 @@ var loadFavorites = function() {
 	}
 }
 
-var searchTitle = function(event){
-	event.preventDefault();
 
-	console.log(event);
-
-}
 
 loadPage();
 loadFavorites();
-//searchEl.onclick = searchTitle;
