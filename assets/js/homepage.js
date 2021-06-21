@@ -88,6 +88,7 @@ var searchTitle = function(event){
 	event.preventDefault();
 
 	fetch(urlSearch+titleSearch.value).then(function(response){
+		//console.log(response.json())
 		if (response.ok){
 			response.json()
 			.then(function(data){
@@ -114,7 +115,7 @@ var searchTitle = function(event){
 	
 	setTimeout(function(){
 		localStorage.setItem("search", JSON.stringify(searched));
-	location.replace("./search.html");
+		location.replace("./search.html");
 	}, 1000);
 	
 
