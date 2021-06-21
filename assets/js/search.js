@@ -10,41 +10,41 @@ var searchItem = JSON.parse(localStorage.getItem("search"));
 
 console.log(searchItem);
 
-// var utelly = function (event) {
-// 	var movieID = event.id;
-// 	console.log(movieID);
+var utelly = function (event) {
+	var movieID = event.id;
+	console.log(movieID);
 
-// 	fetch("https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/idlookup?source_id=" + movieID + "&source=imdb&country=us", {
-// 		"method": "GET",
-// 		"headers": {
-// 			"x-rapidapi-key": "69b980341fmsh2b7d3a3dc6d32b3p1f8da7jsn0c865af8dcf9",
-// 			"x-rapidapi-host": "utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com"
-// 		}
-// 	})
-// 		.then(function (response) {
-// 			return response.json();
-// 		})
-// 		.then(function (data) {
-// 			console.log("Utelly response");
-// 			console.log(data);
-// 				for (var i = 0; i < data.collection.locations.length; i++) {
-// 					var service = document.createElement("a");
-// 					service.setAttribute("href", data.collection.locations[i].url);
-// 					service.setAttribute("target", "_blank");
-// 					service.className = "stream-badge";
-// 					var icon = document.createElement("img");
-// 					icon.setAttribute("src", data.collection.locations[i].icon);
-// 					service.appendChild(icon);
-// 					event.append(service);
-// 			}
-// 		})
-// 		.catch(function (err) {
-// 			console.error(err);
-// 			var h3 = document.createElement("h3");
-// 			h3.textContent = "Not available for streaming";
-// 			event.append(h3);
-// 		});
-// }
+	fetch("https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/idlookup?source_id=" + movieID + "&source=imdb&country=us", {
+		"method": "GET",
+		"headers": {
+			"x-rapidapi-key": "69b980341fmsh2b7d3a3dc6d32b3p1f8da7jsn0c865af8dcf9",
+			"x-rapidapi-host": "utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com"
+		}
+	})
+		.then(function (response) {
+			return response.json();
+		})
+		.then(function (data) {
+			console.log("Utelly response");
+			console.log(data);
+				for (var i = 0; i < data.collection.locations.length; i++) {
+					var service = document.createElement("a");
+					service.setAttribute("href", data.collection.locations[i].url);
+					service.setAttribute("target", "_blank");
+					service.className = "stream-badge";
+					var icon = document.createElement("img");
+					icon.setAttribute("src", data.collection.locations[i].icon);
+					service.appendChild(icon);
+					event.append(service);
+			}
+		})
+		.catch(function (err) {
+			console.error(err);
+			var h3 = document.createElement("h3");
+			h3.textContent = "Not available for streaming";
+			event.append(h3);
+		});
+}
 
 var displaySearch = function () {
 	for (var i = 0; i < searchItem.length; i++) {
