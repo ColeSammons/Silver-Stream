@@ -88,7 +88,7 @@ var searchTitle = function(event){
 	event.preventDefault();
 
 	fetch(urlSearch+titleSearch.value).then(function(response){
-		//console.log(response.json())
+		console.log(response.json())
 		if (response.ok){
 			response.json()
 			.then(function(data){
