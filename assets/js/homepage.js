@@ -81,15 +81,16 @@ var saveLocal = function() {
     },1500)
 }
 
-var searchTitle = function(event){
-	event.preventDefault();
+// var searchTitle = function(event){
+// 	event.preventDefault();
 
-	//console.log(event);
-	//console.log(document.getElementById("title").value)
-	fetch(urlSearch+titleSearch.value).then(function(response){
-		console.log(response.json());
-	})
-}
+// 	//console.log(event);
+// 	//console.log(document.getElementById("title").value)
+// 	fetch(urlSearch+titleSearch.value).then(function(response){
+// 		//console.log(response.json());
+// 		return response.json();
+// 	})
+// }
 
 
 getGenreArray();
@@ -97,5 +98,5 @@ topRated();
 getExternalID();
 saveLocal();
 
-searchEl.onclick = searchTitle;
+//searchEl.onclick = searchTitle;
 

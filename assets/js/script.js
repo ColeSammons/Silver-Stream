@@ -151,4 +151,4 @@ var searchTitle = function(event){
 
 loadPage();
 loadFavorites();
-searchEl.onclick = searchTitle;
+//searchEl.onclick = searchTitle;
