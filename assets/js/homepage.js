@@ -1,13 +1,16 @@
+
+
 $(document).foundation();//initializes foundation
 var apiKeyTMDB = "8b0814d7463c28b76f719e9285aecbd7";
 var urlGenre = "https://api.themoviedb.org/3/genre/movie/list?api_key=" + apiKeyTMDB + "&language=en";//links to an array of TMDB genres categorized by id
 var urlTopRated = "https://api.themoviedb.org/3/movie/top_rated?api_key=" + apiKeyTMDB + "&language=en";//links to top rated TMDB movies
 var urlSearch = "https://api.themoviedb.org/3/search/movie?api_key=" + apiKeyTMDB + "&query="; //Search Title link
-var searchEl = document.getElementById("search");
+var searchEl = document.getElementById("searchBtn");
 var titleSearch = document.getElementById("title");
 var movies = [];
 var genres = [];
 var savedMovies = [];
+var searched = [];
 
 //Filling the genres array with genre objects that have a name and id available
 var getGenreArray = function () {
@@ -81,16 +84,44 @@ var saveLocal = function() {
     },1500)
 }
 
-// var searchTitle = function(event){
-// 	event.preventDefault();
+var searchTitle = function(event){
+	event.preventDefault();
 
-// 	//console.log(event);
-// 	//console.log(document.getElementById("title").value)
-// 	fetch(urlSearch+titleSearch.value).then(function(response){
-// 		//console.log(response.json());
-// 		return response.json();
-// 	})
-// }
+	fetch(urlSearch+titleSearch.value).then(function(response){
+		if (response.ok){
+			response.json()
+			.then(function(data){
+				for (var i = 0; i < data.results.length; i++){
+					var searchInfo = {
+						
+							'genre': data.results[i].genre_ids,
+							'id': data.results[i].id,
+							'overview': data.results[i].overview,
+							'poster': data.results[i].poster_path,
+							'release': data.results[i].release_date,
+							'title': data.results[i].title
+					}
+					searched.push(searchInfo)
+
+					
+				}
+			})
+		}
+		
+	})
+	
+	//Saves search array into local search
+	
+	setTimeout(function(){
+		localStorage.setItem("search", JSON.stringify(searched));
+	location.replace("./search.html");
+	}, 1000);
+	
+
+
+}
+
+
 
 
 getGenreArray();
@@ -98,5 +129,5 @@ topRated();
 getExternalID();
 saveLocal();
 
-//searchEl.onclick = searchTitle;
+searchEl.onclick = searchTitle;
 

@@ -1,15 +1,8 @@
 
-
+var apiKeyTMDB = "8b0814d7463c28b76f719e9285aecbd7";
 var urlSearch = "https://api.themoviedb.org/3/search/movie?api_key=" + apiKeyTMDB + "&query="; //Search Title link
 var titleSearch = document.getElementById("title");
 
-var searchTitle = function(event){
-	event.preventDefault();
+var searchItem = JSON.parse(localStorage.getItem("search"));
 
-	//console.log(event);
-	console.log(document.getElementById("title").value)
-	fetch(urlSearch+titleSearch.value).then(function(response){
-		//console.log(response.json());
-		return response.json();
-	})
-}
+console.log(searchItem);
