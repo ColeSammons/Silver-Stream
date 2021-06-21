@@ -3,7 +3,7 @@ var urlPoster = "https://image.tmdb.org/t/p/original";//url for posters. Image l
 var apiKeyTMDB = "8b0814d7463c28b76f719e9285aecbd7";
 var urlSearch = "https://api.themoviedb.org/3/search/movie?api_key=" + apiKeyTMDB + "&query="; //Search Title link
 var titleSearch = document.getElementById("title");
-movies = [];
+
 savedMovies = [];
 
 var searchItem = JSON.parse(localStorage.getItem("search"));
@@ -57,7 +57,7 @@ var displaySearch = function () {
 		$("#movies-display").append(button);
 
 		//reveal modal
-		var reveal = $("<div>").addClass("reveal grid-container").attr("id", searchItem[i].imdb).attr("data-reveal", "");
+		var reveal = $("<div>").addClass("reveal grid-container").attr("id", searchItem[i].id).attr("data-reveal", "");
 		var mediaObj = $("<div>").addClass("media-object grid-x align-center");
 		var mediaObjSecImg = $("<div>").addClass("media-object-section shrink cell");
 		var posterOut = $("<img>").addClass("movie-poster-out").attr("src", urlPoster + searchItem[i].poster);
