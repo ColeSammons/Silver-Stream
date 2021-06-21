@@ -99,7 +99,7 @@ var displaySorted = function () {
 			popup.open();
 		});
 
-		streamServices.one("click", function (event) {
+		streamServices.on("click", function (event) {
 			console.log(event.target.parentNode);
 			utelly(event.target.parentNode);
 			event.target.remove();
