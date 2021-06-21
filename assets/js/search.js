@@ -6,3 +6,8 @@ var titleSearch = document.getElementById("title");
 var searchItem = JSON.parse(localStorage.getItem("search"));
 
 console.log(searchItem);
+
+var display = function(){
+
+    
+}
