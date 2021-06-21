@@ -24,3 +24,6 @@ https://colesammons.github.io/Silver-Stream/
 * Cole Sammons
 * Jazmyne Bradley
 * Chris Rose
+
+## Disclaimer
+Searching is not fully functional
