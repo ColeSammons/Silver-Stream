@@ -57,7 +57,7 @@ var displaySearch = function () {
 		$("#movies-display").append(button);
 
 		//reveal modal
-		var reveal = $("<div>").addClass("reveal grid-container").attr("id", searchItem[i].imdb).attr("data-reveal", "");
+		var reveal = $("<div>").addClass("reveal grid-container").attr("id", searchItem[i].id).attr("data-reveal", "");
 		var mediaObj = $("<div>").addClass("media-object grid-x align-center");
 		var mediaObjSecImg = $("<div>").addClass("media-object-section shrink cell");
 		var posterOut = $("<img>").addClass("movie-poster-out").attr("src", urlPoster + searchItem[i].poster);
